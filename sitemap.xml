@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  
+  <url>
+    <loc>https://www.midescanso.com/</loc>
+    <lastmod>2025-12-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://www.midescanso.com/logo.png</image:loc>
+      <image:title>Mi Descanso - Restaurante Campestre</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.midescanso.com/restaurante.jpg</image:loc>
+      <image:title>Restaurante con comida tradicional a la leña</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.midescanso.com/piscina-aerea.jpg</image:loc>
+      <image:title>Piscinas con vista panorámica</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.midescanso.com/eventos-noche.jpg</image:loc>
+      <image:title>Eventos y shows en vivo</image:title>
+    </image:image>
+  </url>
+  
+</urlset>

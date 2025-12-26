@@ -1,0 +1,27 @@
+{
+  "name": "Mi Descanso - Restaurante Campestre",
+  "short_name": "Mi Descanso",
+  "description": "Restaurante campestre con comida tradicional, hospedaje, piscinas y eventos familiares",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f6f8f6",
+  "theme_color": "#13ec49",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/logo.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/logo.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["food", "hospitality", "entertainment"],
+  "lang": "es",
+  "dir": "ltr"
+}
