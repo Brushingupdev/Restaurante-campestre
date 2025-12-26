@@ -1,0 +1,2422 @@
+﻿<!DOCTYPE html>
+<html class="light" lang="es">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Mi Descanso - Restaurante Campestre</title>
+    <meta name="description"
+        content="Mi Descanso, tu refugio campestre donde disfrutarás de la mejor comida tradicional, naturaleza y diversión familiar.">
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200..800&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#13ec49",
+                        "background-light": "#f6f8f6",
+                        "background-dark": "#102215",
+                        "earth-brown": "#8B5A2B",
+                        "warm-cream": "#FFF8E7",
+                    },
+                    fontFamily: {
+                        "display": ["Plus Jakarta Sans", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+
+
+        .logo-img {
+            height: 90px;
+            width: auto;
+            filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.1));
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .logo-img:hover {
+            transform: scale(1.02);
+            filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.15));
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            cursor: pointer;
+            padding: 0.5rem 1.25rem 0.5rem 0.5rem;
+            border-radius: 16px;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(0, 0, 0, 0.06);
+            transition: all 0.3s ease;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+        }
+
+        .logo-container:hover {
+            background: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+            border-color: rgba(19, 236, 73, 0.2);
+        }
+
+        .logo-text {
+            font-weight: 700;
+            font-size: 1.4rem;
+            letter-spacing: -0.03em;
+            color: #0d1b11;
+            line-height: 1.2;
+        }
+
+        .logo-text::after {
+            content: 'Restaurante Campestre';
+            display: block;
+            font-size: 0.625rem;
+            font-weight: 500;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: #6b7280;
+            margin-top: 1px;
+        }
+
+
+        .footer-logo {
+            height: 80px;
+            width: auto;
+            filter: brightness(1.2) drop-shadow(0 4px 12px rgba(19, 236, 73, 0.3));
+            transition: all 0.4s ease;
+        }
+
+        .footer-logo:hover {
+            transform: scale(1.05);
+            filter: brightness(1.3) drop-shadow(0 6px 20px rgba(19, 236, 73, 0.5));
+        }
+
+        .footer .logo-container {
+            padding: 1rem 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .footer .logo-container:hover {
+            box-shadow: 0 6px 30px rgba(19, 236, 73, 0.2);
+        }
+
+        .footer .logo-text {
+            color: #ffffff;
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+
+        .footer .logo-text {
+            color: #ffffff;
+        }
+
+        .footer .logo-text::after {
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+
+        .carousel-container {
+            position: relative;
+            width: 100%;
+            min-height: 750px;
+            overflow: hidden;
+        }
+
+        .carousel-slide {
+            position: absolute;
+            inset: 0;
+            opacity: 0;
+            transition: opacity 1.5s ease-in-out;
+            pointer-events: none;
+        }
+
+        .carousel-slide.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .carousel-image {
+            position: absolute;
+            inset: 0;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            image-rendering: -webkit-optimize-contrast;
+            image-rendering: crisp-edges;
+            transform: scale(1.01);
+        }
+
+        .carousel-controls {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 0.5rem;
+            z-index: 20;
+        }
+
+        .carousel-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.4);
+            border: 2px solid rgba(255, 255, 255, 0.8);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .carousel-dot:hover {
+            background: rgba(255, 255, 255, 0.6);
+            transform: scale(1.2);
+        }
+
+        .carousel-dot.active {
+            background: #13ec49;
+            border-color: #13ec49;
+            width: 32px;
+            border-radius: 6px;
+        }
+
+        .carousel-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 20;
+            color: white;
+            font-size: 24px;
+        }
+
+        .carousel-arrow:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .carousel-arrow.prev {
+            left: 2rem;
+        }
+
+        .carousel-arrow.next {
+            right: 2rem;
+        }
+
+        .carousel-caption {
+            position: absolute;
+            bottom: 5rem;
+            left: 0;
+            right: 0;
+            text-align: center;
+            z-index: 15;
+            padding: 0 1rem;
+        }
+
+        .carousel-caption h3 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: white;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+            margin-bottom: 0.5rem;
+        }
+
+        @media (max-width: 768px) {
+            .carousel-arrow {
+                width: 40px;
+                height: 40px;
+                font-size: 20px;
+            }
+
+            .carousel-arrow.prev {
+                left: 1rem;
+            }
+
+            .carousel-arrow.next {
+                right: 1rem;
+            }
+        }
+    </style>
+</head>
+
+<body class="bg-background-light dark:bg-background-dark text-[#0d1b11] dark:text-white font-display overflow-x-hidden">
+    <nav
+        class="sticky top-0 z-50 w-full bg-background-light/95 dark:bg-background-dark/95 backdrop-blur-sm border-b border-[#e7f3ea] dark:border-white/10">
+        <div class="max-w-[1280px] mx-auto px-4 sm:px-10 py-3">
+            <div class="flex items-center justify-between">
+                <div class="logo-container">
+                    <img src="logo.png" alt="Mi Descanso Logo" class="logo-img">
+                    <span class="logo-text">Mi Descanso</span>
+                </div>
+                <div class="hidden md:flex items-center gap-8">
+                    <a class="text-sm font-medium hover:text-primary transition-colors" href="#menu">Restaurante</a>
+                    <a class="text-sm font-medium hover:text-primary transition-colors" href="#hospedaje">Hospedaje</a>
+                    <a class="text-sm font-medium hover:text-primary transition-colors" href="#eventos">Eventos</a>
+                    <a class="text-sm font-medium hover:text-primary transition-colors" href="#ubicacion">Ubicación</a>
+                </div>
+                <a href="#hospedaje"
+                    class="hidden md:flex items-center justify-center gap-2 rounded-full h-10 px-6 bg-primary text-[#0d1b11] text-sm font-bold shadow-lg shadow-primary/20 hover:bg-primary/90 transition-all">
+                    <span class="material-symbols-outlined text-[20px]">event_available</span>
+                    <span>Reserva Aquí</span>
+                </a>
+                <button class="md:hidden text-[#0d1b11] dark:text-white">
+                    <span class="material-symbols-outlined text-3xl">menu</span>
+                </button>
+            </div>
+        </div>
+    </nav>
+    <header class="carousel-container" id="inicio">
+
+        <div class="carousel-slide active">
+            <div class="carousel-image" style="background-image: url('evento-familiar.jpg');">
+            </div>
+            <div class="absolute inset-0 bg-gradient-to-b from-black/60 to-black/30"></div>
+            <div class="relative z-10 container mx-auto px-4 text-center h-full flex items-center justify-center">
+                <div class="max-w-3xl mx-auto flex flex-col gap-6 items-center">
+                    <div
+                        class="inline-flex items-center justify-center px-4 py-1.5 rounded-full bg-primary/20 backdrop-blur-md border border-primary/30 text-primary font-bold text-xs uppercase tracking-wider">
+                        Celebraciones Familiares
+                    </div>
+                    <h1 class="text-white text-5xl md:text-6xl font-black leading-tight tracking-tight drop-shadow-lg">
+                        Momentos <span class="text-primary">Inolvidables</span>
+                    </h1>
+                    <p class="text-white/90 text-lg md:text-xl font-normal leading-relaxed max-w-xl drop-shadow-md">
+                        El lugar perfecto para celebrar tus eventos especiales con familia y amigos
+                    </p>
+                    <div class="flex flex-wrap gap-4 justify-center mt-4">
+                        <a class="flex min-w-[160px] cursor-pointer items-center justify-center rounded-xl h-12 px-6 bg-primary text-[#0d1b11] text-base font-bold shadow-[0_0_20px_rgba(19,236,73,0.4)] hover:scale-105 transition-transform"
+                            href="#eventos">
+                            Ver Eventos
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="carousel-slide">
+            <div class="carousel-image" style="background-image: url('piscina-bebidas.jpg');">
+            </div>
+            <div class="absolute inset-0 bg-gradient-to-b from-black/60 to-black/30"></div>
+            <div class="relative z-10 container mx-auto px-4 text-center h-full flex items-center justify-center">
+                <div class="max-w-3xl mx-auto flex flex-col gap-6 items-center">
+                    <div
+                        class="inline-flex items-center justify-center px-4 py-1.5 rounded-full bg-primary/20 backdrop-blur-md border border-primary/30 text-primary font-bold text-xs uppercase tracking-wider">
+                        Piscinas y Diversión
+                    </div>
+                    <h1 class="text-white text-5xl md:text-6xl font-black leading-tight tracking-tight drop-shadow-lg">
+                        Relájate y <span class="text-primary">Disfruta</span>
+                    </h1>
+                    <p class="text-white/90 text-lg md:text-xl font-normal leading-relaxed max-w-xl drop-shadow-md">
+                        Refrescantes piscinas con bar acuático para disfrutar en familia
+                    </p>
+                    <div class="flex flex-wrap gap-4 justify-center mt-4">
+                        <a class="flex min-w-[160px] cursor-pointer items-center justify-center rounded-xl h-12 px-6 bg-primary text-[#0d1b11] text-base font-bold shadow-[0_0_20px_rgba(19,236,73,0.4)] hover:scale-105 transition-transform"
+                            href="#menu">
+                            Ver Menú
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="carousel-slide">
+            <div class="carousel-image" style="background-image: url('eventos-noche.jpg');">
+            </div>
+            <div class="absolute inset-0 bg-gradient-to-b from-black/60 to-black/30"></div>
+            <div class="relative z-10 container mx-auto px-4 text-center h-full flex items-center justify-center">
+                <div class="max-w-3xl mx-auto flex flex-col gap-6 items-center">
+                    <div
+                        class="inline-flex items-center justify-center px-4 py-1.5 rounded-full bg-primary/20 backdrop-blur-md border border-primary/30 text-primary font-bold text-xs uppercase tracking-wider">
+                        Eventos y Shows
+                    </div>
+                    <h1 class="text-white text-5xl md:text-6xl font-black leading-tight tracking-tight drop-shadow-lg">
+                        Celebra con <span class="text-primary">Música en Vivo</span>
+                    </h1>
+                    <p class="text-white/90 text-lg md:text-xl font-normal leading-relaxed max-w-xl drop-shadow-md">
+                        Orquestas, shows folclóricos y eventos especiales todos los fines de semana
+                    </p>
+                    <div class="flex flex-wrap gap-4 justify-center mt-4">
+                        <a class="flex min-w-[160px] cursor-pointer items-center justify-center rounded-xl h-12 px-6 bg-primary text-[#0d1b11] text-base font-bold shadow-[0_0_20px_rgba(19,236,73,0.4)] hover:scale-105 transition-transform"
+                            href="#eventos">
+                            Ver Eventos
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="carousel-slide">
+            <div class="carousel-image" style="background-image: url('piscina-aerea.jpg');">
+            </div>
+            <div class="absolute inset-0 bg-gradient-to-b from-black/60 to-black/30"></div>
+            <div class="relative z-10 container mx-auto px-4 text-center h-full flex items-center justify-center">
+                <div class="max-w-3xl mx-auto flex flex-col gap-6 items-center">
+                    <div
+                        class="inline-flex items-center justify-center px-4 py-1.5 rounded-full bg-primary/20 backdrop-blur-md border border-primary/30 text-primary font-bold text-xs uppercase tracking-wider">
+                        Vista Panorámica
+                    </div>
+                    <h1 class="text-white text-5xl md:text-6xl font-black leading-tight tracking-tight drop-shadow-lg">
+                        Instalaciones <span class="text-primary">Completas</span>
+                    </h1>
+                    <p class="text-white/90 text-lg md:text-xl font-normal leading-relaxed max-w-xl drop-shadow-md">
+                        Amplias áreas recreativas con piscinas, toboganes y zonas verdes para toda la familia
+                    </p>
+                    <div class="flex flex-wrap gap-4 justify-center mt-4">
+                        <a class="flex min-w-[160px] cursor-pointer items-center justify-center rounded-xl h-12 px-6 bg-primary text-[#0d1b11] text-base font-bold shadow-[0_0_20px_rgba(19,236,73,0.4)] hover:scale-105 transition-transform"
+                            href="#menu">
+                            Ver Menú
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="carousel-slide">
+            <div class="carousel-image" style="background-image: url('juegos-acuaticos.jpg');">
+            </div>
+            <div class="absolute inset-0 bg-gradient-to-b from-black/60 to-black/30"></div>
+            <div class="relative z-10 container mx-auto px-4 text-center h-full flex items-center justify-center">
+                <div class="max-w-3xl mx-auto flex flex-col gap-6 items-center">
+                    <div
+                        class="inline-flex items-center justify-center px-4 py-1.5 rounded-full bg-primary/20 backdrop-blur-md border border-primary/30 text-primary font-bold text-xs uppercase tracking-wider">
+                        Atracciones Acuáticas
+                    </div>
+                    <h1 class="text-white text-5xl md:text-6xl font-black leading-tight tracking-tight drop-shadow-lg">
+                        Diversión <span class="text-primary">Sin Límites</span>
+                    </h1>
+                    <p class="text-white/90 text-lg md:text-xl font-normal leading-relaxed max-w-xl drop-shadow-md">
+                        Toboganes coloridos, juegos acuáticos y chorros de agua para la diversión de los más pequeños
+                    </p>
+                    <div class="flex flex-wrap gap-4 justify-center mt-4">
+                        <a class="flex min-w-[160px] cursor-pointer items-center justify-center rounded-xl h-12 px-6 bg-primary text-[#0d1b11] text-base font-bold shadow-[0_0_20px_rgba(19,236,73,0.4)] hover:scale-105 transition-transform"
+                            href="#ubicacion">
+                            Visítanos
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <button class="carousel-arrow prev" onclick="moveCarousel(-1)">
+            <span class="material-symbols-outlined">chevron_left</span>
+        </button>
+        <button class="carousel-arrow next" onclick="moveCarousel(1)">
+            <span class="material-symbols-outlined">chevron_right</span>
+        </button>
+
+
+        <div class="carousel-controls">
+            <button class="carousel-dot active" onclick="goToSlide(0)"></button>
+            <button class="carousel-dot" onclick="goToSlide(1)"></button>
+            <button class="carousel-dot" onclick="goToSlide(2)"></button>
+            <button class="carousel-dot" onclick="goToSlide(3)"></button>
+            <button class="carousel-dot" onclick="goToSlide(4)"></button>
+        </div>
+    </header>
+    <section class="py-16 md:py-24 px-4 bg-[#fdfdf5] dark:bg-background-dark" id="servicios">
+        <div class="max-w-[1280px] mx-auto">
+            <div class="flex flex-col items-center text-center mb-16">
+                <span class="text-primary font-bold uppercase tracking-wider text-sm mb-2">Descubre</span>
+                <h2
+                    class="text-[#0d1b11] dark:text-white text-4xl md:text-5xl font-bold leading-tight mb-4 tracking-tight">
+                    Qué Ofrecemos
+                </h2>
+                <p class="text-[#0d1b11]/70 dark:text-white/70 text-lg leading-relaxed max-w-2xl">
+                    No somos solo un restaurante, somos tu destino de fin de semana. Todo lo que necesitas para un día
+                    inolvidable.
+                </p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
+
+                <a href="#menu"
+                    class="group relative overflow-hidden rounded-3xl h-72 shadow-lg hover:shadow-2xl transition-all duration-300 cursor-pointer hover:-translate-y-2 block">
+                    <img src="restaurante.jpg" alt="Restaurante"
+                        class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                    <div
+                        class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent group-hover:from-black/90 transition-all duration-300">
+                    </div>
+                    <div class="absolute inset-0 flex flex-col items-center justify-end p-6 text-center">
+                        <h3 class="text-2xl font-bold text-white mb-2">Restaurante</h3>
+                        <p class="text-white/90 text-sm leading-relaxed">
+                            Sabor tradicional a la leña con los mejores ingredientes locales.
+                        </p>
+                    </div>
+                </a>
+
+
+                <a href="#hospedaje"
+                    class="group relative overflow-hidden rounded-3xl h-72 shadow-lg hover:shadow-2xl transition-all duration-300 cursor-pointer hover:-translate-y-2 block">
+                    <img src="piscina-personas.jpg" alt="Hospedaje"
+                        class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                    <div
+                        class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent group-hover:from-black/90 transition-all duration-300">
+                    </div>
+                    <div class="absolute inset-0 flex flex-col items-center justify-end p-6 text-center">
+                        <h3 class="text-2xl font-bold text-white mb-2">Hospedaje</h3>
+                        <p class="text-white/90 text-sm leading-relaxed">
+                            Habitaciones rústicas y acogedoras para un descanso reparador.
+                        </p>
+                    </div>
+                </a>
+
+
+                <a href="#hospedaje"
+                    class="group relative overflow-hidden rounded-3xl h-72 shadow-lg hover:shadow-2xl transition-all duration-300 cursor-pointer hover:-translate-y-2 block">
+                    <img src="piscina-aerea.jpg" alt="Piscinas"
+                        class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                    <div
+                        class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent group-hover:from-black/90 transition-all duration-300">
+                    </div>
+                    <div class="absolute inset-0 flex flex-col items-center justify-end p-6 text-center">
+                        <h3 class="text-2xl font-bold text-white mb-2">Piscinas</h3>
+                        <p class="text-white/90 text-sm leading-relaxed">
+                            Refrescante diversión acuática con toboganes para toda la familia.
+                        </p>
+                    </div>
+                </a>
+
+
+                <a href="#eventos"
+                    class="group relative overflow-hidden rounded-3xl h-72 shadow-lg hover:shadow-2xl transition-all duration-300 cursor-pointer hover:-translate-y-2 block">
+                    <img src="eventos-noche.jpg" alt="Eventos"
+                        class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                    <div
+                        class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent group-hover:from-black/90 transition-all duration-300">
+                    </div>
+                    <div class="absolute inset-0 flex flex-col items-center justify-end p-6 text-center">
+                        <h3 class="text-2xl font-bold text-white mb-2">Eventos</h3>
+                        <p class="text-white/90 text-sm leading-relaxed">
+                            Música en vivo, shows folclóricos y celebraciones especiales.
+                        </p>
+                    </div>
+                </a>
+
+
+                <a href="#hospedaje"
+                    class="group relative overflow-hidden rounded-3xl h-72 shadow-lg hover:shadow-2xl transition-all duration-300 cursor-pointer hover:-translate-y-2 block">
+                    <img src="juegos-acuaticos.jpg" alt="Recreación"
+                        class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                    <div
+                        class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent group-hover:from-black/90 transition-all duration-300">
+                    </div>
+                    <div class="absolute inset-0 flex flex-col items-center justify-end p-6 text-center">
+                        <h3 class="text-2xl font-bold text-white mb-2">Recreación</h3>
+                        <p class="text-white/90 text-sm leading-relaxed">
+                            Toboganes coloridos, chorros de agua y juegos interactivos para la diversión de los niños
+                        </p>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+    <section class="py-16 bg-white dark:bg-[#14291a]" id="menu">
+        <div class="max-w-[1280px] mx-auto px-4">
+            <div class="text-center mb-12">
+                <span class="text-primary font-bold uppercase tracking-wider text-sm">Nuestros Favoritos</span>
+                <h2 class="text-3xl md:text-4xl font-bold text-[#0d1b11] dark:text-white mt-2">Menú Destacado</h2>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div
+                    class="flex flex-col rounded-2xl overflow-hidden bg-background-light dark:bg-background-dark shadow-md group cursor-pointer hover:-translate-y-1 transition-all duration-300">
+                    <div class="h-56 w-full overflow-hidden relative">
+                        <div class="absolute inset-0 bg-cover bg-center group-hover:scale-110 transition-transform duration-500"
+                            data-alt="plate of grilled pork ribs with fries and salad"
+                            style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBAYy-8lvv0hq2JhsZX88zK31jngeNFVdWiGFnH4JOFQa3UNLwAH-ULBlP0tBiHzugDbjp1QKGqIswYhFVEX6NWw8GdwwivrrEcz65Mun3Xi5YbornpJVfILvlY0zYlHX6i7_Ue-Wh0Hr82Wdq8o-Z3bFWq_vw4r9smV-gkIM9J4GsYte9gkGLj3uI1h40v-cPPDtrLS0Z6jwILq6kGWzBpYVs5n_yoBHVnubEj_oseSrg6H-C2MbLeeJFDqEamjFdRoqsFpkeckoU');">
+                        </div>
+                    </div>
+                    <div class="p-5 flex flex-col flex-1">
+                        <h3 class="text-lg font-bold text-[#0d1b11] dark:text-white mb-2">Costillar Dorado</h3>
+                        <p class="text-sm text-[#0d1b11]/70 dark:text-white/70 mb-4 flex-1">
+                            Jugoso costillar de cerdo marinado en hierbas andinas, acompañado de papas doradas y
+                            ensalada fresca.
+                        </p>
+                        <div class="text-center pt-3 border-t border-gray-200 dark:border-gray-700">
+                            <span class="text-2xl font-bold text-[#0d1b11] dark:text-white">S/ 45.00</span>
+                        </div>
+                    </div>
+                </div>
+                <div
+                    class="flex flex-col rounded-2xl overflow-hidden bg-background-light dark:bg-background-dark shadow-md group cursor-pointer hover:-translate-y-1 transition-all duration-300">
+                    <div class="h-56 w-full overflow-hidden relative">
+                        <div class="absolute inset-0 bg-cover bg-center group-hover:scale-110 transition-transform duration-500"
+                            data-alt="grilled chicken with corn and potatoes peruvian style"
+                            style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAlJ0LRA-1cmbsvBjIpahJ38p25Dz8cnPK1J3a60D9cWpfHkCHLDVqZJLU1jHC-H3ZOBwEshsIz6ocibbo_on1MgZLBkZ5trfwyhME04RaoW6HbDomGav7e-sap5LxELTd8pJYVZyoWW-75swaaU07apeGZ7Ahm2Yz84X3-uvRVBiHdrnUZZ9R8GZ8vf5WdKIgY---in061uOTM02-h5bW8whFVc8eF3B0-Z3UyE8UbiSYSFvO0Q47CJJTxVhTWeu3XMTxJc2ti8ew');">
+                        </div>
+                    </div>
+                    <div class="p-5 flex flex-col flex-1">
+                        <h3 class="text-lg font-bold text-[#0d1b11] dark:text-white mb-2">Pollo a la Leña</h3>
+                        <p class="text-sm text-[#0d1b11]/70 dark:text-white/70 mb-4 flex-1">
+                            Pollo entero cocinado lentamente a la leña, servido con papas fritas rústicas y cremas de la
+                            casa.
+                        </p>
+                        <div class="text-center pt-3 border-t border-gray-200 dark:border-gray-700">
+                            <span class="text-2xl font-bold text-[#0d1b11] dark:text-white">S/ 60.00</span>
+                        </div>
+                    </div>
+                </div>
+                <div
+                    class="flex flex-col rounded-2xl overflow-hidden bg-background-light dark:bg-background-dark shadow-md group cursor-pointer hover:-translate-y-1 transition-all duration-300">
+                    <div class="h-56 w-full overflow-hidden relative">
+                        <div class="absolute inset-0 bg-cover bg-center group-hover:scale-110 transition-transform duration-500"
+                            data-alt="traditional peruvian cuy chactado dish"
+                            style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuC251LcAxfVseDFC3wf06oZJXk2Up746on6fX_gzyi-kuvosqNEwxeJ5AsbMs1cAhi-q1ykNmma1rsXteFEtPtr06biZCc2JCUc9VkZTYhJFfd4innUXH4A-Q9MZOiOSvX0O5ByKu_klnssj76ZflCCfjy3QM6SvF7ptt80endQrcoNo9i43YDvbCLTJezgRtUTaLzr73BLGLTFURiLCBwLO1b5uqajLXGSc7JtiqskG8_Ypp6pWdKCugLWlfD7U82PK2UJDqBtNXM');">
+                        </div>
+                    </div>
+                    <div class="p-5 flex flex-col flex-1">
+                        <h3 class="text-lg font-bold text-[#0d1b11] dark:text-white mb-2">Cuy Chactado</h3>
+                        <p class="text-sm text-[#0d1b11]/70 dark:text-white/70 mb-4 flex-1">
+                            Tradicional cuy frito crocante con papas sancochadas, maíz tostado y salsa criolla.
+                        </p>
+                        <div class="text-center pt-3 border-t border-gray-200 dark:border-gray-700">
+                            <span class="text-2xl font-bold text-[#0d1b11] dark:text-white">S/ 55.00</span>
+                        </div>
+                    </div>
+                </div>
+                <div
+                    class="flex flex-col rounded-2xl overflow-hidden bg-background-light dark:bg-background-dark shadow-md group cursor-pointer hover:-translate-y-1 transition-all duration-300">
+                    <div class="h-56 w-full overflow-hidden relative">
+                        <div class="absolute inset-0 bg-cover bg-center group-hover:scale-110 transition-transform duration-500"
+                            data-alt="grilled trout fish with vegetables"
+                            style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDVCmPk2CbKpAm8G9oK_mQnmthhmpOcCTjZUJ0mICycxPOJ7AOL1_DIWJZx83rHmN4Sg6Q5KXiv0IQofIkYbmCbkKpBAHe17-bwORd0192urVwZdy3ciUk6kHWE5gVNurWTjvypQ6yZdNwZDoqj6_ZCi1Ezq2dIHV9W7WB-AxsVP24rNjcZE2ihaJznGm1s_AEzkbVSqHbHRSaaRw8MxklRlOSQjXLMbMluC93Vy6cQaPM5LpBBLHMA8Gjs_t64kkJFdlIGVzn-fjY');">
+                        </div>
+                    </div>
+                    <div class="p-5 flex flex-col flex-1">
+                        <h3 class="text-lg font-bold text-[#0d1b11] dark:text-white mb-2">Trucha Frita</h3>
+                        <p class="text-sm text-[#0d1b11]/70 dark:text-white/70 mb-4 flex-1">
+                            Trucha fresca de río, dorada y crujiente, acompañada de arroz graneado y yucas fritas.
+                        </p>
+                        <div class="text-center pt-3 border-t border-gray-200 dark:border-gray-700">
+                            <span class="text-2xl font-bold text-[#0d1b11] dark:text-white">S/ 38.00</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="flex justify-center mt-10">
+                <button onclick="openMenuModal()"
+                    class="inline-flex items-center gap-2 text-[#0d1b11] dark:text-white font-bold hover:text-primary transition-colors cursor-pointer bg-transparent border-0">
+                    Ver Carta Completa
+                    <span class="material-symbols-outlined">arrow_forward</span>
+                </button>
+            </div>
+        </div>
+    </section>
+
+
+    <section
+        class="py-20 bg-gradient-to-br from-[#f8fdf9] via-white to-[#e7f3ea] dark:bg-gradient-to-br dark:from-[#0d1b11] dark:via-[#14291a] dark:to-[#102215]"
+        id="hospedaje">
+        <div class="max-w-[1280px] mx-auto px-4">
+
+
+            <div class="text-center mb-12">
+                <div
+                    class="inline-flex items-center justify-center px-4 py-1.5 rounded-full bg-primary/20 text-primary font-bold text-xs uppercase tracking-wider mb-4">
+                    Tu Hogar Lejos de Casa
+                </div>
+                <h2 class="text-4xl md:text-5xl font-bold text-[#0d1b11] dark:text-white mb-4">Hospedaje Campestre</h2>
+                <p class="text-lg text-[#0d1b11]/70 dark:text-white/70 max-w-2xl mx-auto">
+                    Habitaciones cómodas y acogedoras rodeadas de naturaleza. Desconéctate del estrés y disfruta de la
+                    tranquilidad del campo.
+                </p>
+            </div>
+
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+
+
+                <div
+                    class="bg-white dark:bg-[#1a3322] rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 group">
+                    <div class="relative h-64 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=600&q=80"
+                            alt="Habitación simple con cama individual"
+                            class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                        <div class="absolute top-4 right-4 bg-primary px-3 py-1 rounded-full">
+                            <span class="text-[#0d1b11] font-bold text-sm">Desde S/ 80</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center gap-2 mb-3">
+                            <span class="material-symbols-outlined text-primary text-2xl">single_bed</span>
+                            <h3 class="text-2xl font-bold text-[#0d1b11] dark:text-white">Habitación Simple</h3>
+                        </div>
+                        <p class="text-[#0d1b11]/70 dark:text-white/70 text-sm mb-4">
+                            Perfecta para viajeros solitarios. Incluye cama individual, baño privado y vista al jardín.
+                        </p>
+
+
+                        <div class="grid grid-cols-2 gap-2 mb-4">
+                            <div class="flex items-center gap-1 text-xs text-[#0d1b11]/60 dark:text-white/60">
+                                <span class="material-symbols-outlined text-sm text-primary">wifi</span>
+                                <span>WiFi gratis</span>
+                            </div>
+                            <div class="flex items-center gap-1 text-xs text-[#0d1b11]/60 dark:text-white/60">
+                                <span class="material-symbols-outlined text-sm text-primary">shower</span>
+                                <span>Baño privado</span>
+                            </div>
+                            <div class="flex items-center gap-1 text-xs text-[#0d1b11]/60 dark:text-white/60">
+                                <span class="material-symbols-outlined text-sm text-primary">ac_unit</span>
+                                <span>Ventilador</span>
+                            </div>
+                            <div class="flex items-center gap-1 text-xs text-[#0d1b11]/60 dark:text-white/60">
+                                <span class="material-symbols-outlined text-sm text-primary">local_parking</span>
+                                <span>Parking</span>
+                            </div>
+                        </div>
+
+                        <div
+                            class="flex items-center justify-between pt-4 border-t border-gray-200 dark:border-gray-700">
+                            <span class="text-sm text-[#0d1b11]/60 dark:text-white/60">1 persona</span>
+                            <button onclick="openEventModal()"
+                                class="px-4 py-2 bg-primary hover:bg-primary/90 text-[#0d1b11] font-bold rounded-lg transition-all text-sm">
+                                Reservar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div
+                    class="bg-white dark:bg-[#1a3322] rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 group border-2 border-primary">
+                    <div class="relative">
+                        <div class="absolute top-0 left-0 right-0 bg-primary py-1 text-center z-20">
+                            <span class="text-[#0d1b11] font-bold text-xs uppercase">Más Popular</span>
+                        </div>
+                        <div class="relative h-64 overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1566665797739-1674de7a421a?w=600&q=80"
+                                alt="Habitación doble con cama matrimonial"
+                                class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                            <div class="absolute top-10 right-4 bg-primary px-3 py-1 rounded-full z-10">
+                                <span class="text-[#0d1b11] font-bold text-sm">Desde S/ 120</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center gap-2 mb-3">
+                            <span class="material-symbols-outlined text-primary text-2xl">bed</span>
+                            <h3 class="text-2xl font-bold text-[#0d1b11] dark:text-white">Habitación Doble</h3>
+                        </div>
+                        <p class="text-[#0d1b11]/70 dark:text-white/70 text-sm mb-4">
+                            Ideal para parejas. Cama matrimonial, baño privado con agua caliente y balcón privado.
+                        </p>
+
+
+                        <div class="grid grid-cols-2 gap-2 mb-4">
+                            <div class="flex items-center gap-1 text-xs text-[#0d1b11]/60 dark:text-white/60">
+                                <span class="material-symbols-outlined text-sm text-primary">wifi</span>
+                                <span>WiFi gratis</span>
+                            </div>
+                            <div class="flex items-center gap-1 text-xs text-[#0d1b11]/60 dark:text-white/60">
+                                <span class="material-symbols-outlined text-sm text-primary">hot_tub</span>
+                                <span>Agua caliente</span>
+                            </div>
+                            <div class="flex items-center gap-1 text-xs text-[#0d1b11]/60 dark:text-white/60">
+                                <span class="material-symbols-outlined text-sm text-primary">balcony</span>
+                                <span>Balcón</span>
+                            </div>
+                            <div class="flex items-center gap-1 text-xs text-[#0d1b11]/60 dark:text-white/60">
+                                <span class="material-symbols-outlined text-sm text-primary">tv</span>
+                                <span>TV Cable</span>
+                            </div>
+                        </div>
+
+                        <div
+                            class="flex items-center justify-between pt-4 border-t border-gray-200 dark:border-gray-700">
+                            <span class="text-sm text-[#0d1b11]/60 dark:text-white/60">2 personas</span>
+                            <button onclick="openEventModal()"
+                                class="px-4 py-2 bg-primary hover:bg-primary/90 text-[#0d1b11] font-bold rounded-lg transition-all text-sm shadow-lg">
+                                Reservar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div
+                    class="bg-white dark:bg-[#1a3322] rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 group">
+                    <div class="relative h-64 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1618773928121-c32242e63f39?w=600&q=80"
+                            alt="Habitación familiar amplia"
+                            class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                        <div class="absolute top-4 right-4 bg-primary px-3 py-1 rounded-full">
+                            <span class="text-[#0d1b11] font-bold text-sm">Desde S/ 180</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center gap-2 mb-3">
+                            <span class="material-symbols-outlined text-primary text-2xl">family_restroom</span>
+                            <h3 class="text-2xl font-bold text-[#0d1b11] dark:text-white">Habitación Familiar</h3>
+                        </div>
+                        <p class="text-[#0d1b11]/70 dark:text-white/70 text-sm mb-4">
+                            Amplia habitación para toda la familia. 2 camas matrimoniales, sala de estar y terraza.
+                        </p>
+
+
+                        <div class="grid grid-cols-2 gap-2 mb-4">
+                            <div class="flex items-center gap-1 text-xs text-[#0d1b11]/60 dark:text-white/60">
+                                <span class="material-symbols-outlined text-sm text-primary">wifi</span>
+                                <span>WiFi gratis</span>
+                            </div>
+                            <div class="flex items-center gap-1 text-xs text-[#0d1b11]/60 dark:text-white/60">
+                                <span class="material-symbols-outlined text-sm text-primary">weekend</span>
+                                <span>Sala de estar</span>
+                            </div>
+                            <div class="flex items-center gap-1 text-xs text-[#0d1b11]/60 dark:text-white/60">
+                                <span class="material-symbols-outlined text-sm text-primary">deck</span>
+                                <span>Terraza</span>
+                            </div>
+                            <div class="flex items-center gap-1 text-xs text-[#0d1b11]/60 dark:text-white/60">
+                                <span class="material-symbols-outlined text-sm text-primary">kitchen</span>
+                                <span>Mini cocina</span>
+                            </div>
+                        </div>
+
+                        <div
+                            class="flex items-center justify-between pt-4 border-t border-gray-200 dark:border-gray-700">
+                            <span class="text-sm text-[#0d1b11]/60 dark:text-white/60">4-5 personas</span>
+                            <button onclick="openEventModal()"
+                                class="px-4 py-2 bg-primary hover:bg-primary/90 text-[#0d1b11] font-bold rounded-lg transition-all text-sm">
+                                Reservar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+
+            <div class="mb-12">
+                <h3 class="text-3xl md:text-4xl font-bold text-[#0d1b11] dark:text-white text-center mb-3">
+                    Incluido en tu Estadía
+                </h3>
+                <p class="text-center text-[#0d1b11]/70 dark:text-white/70 mb-8 max-w-2xl mx-auto">
+                    Disfruta de servicios premium sin costo adicional durante tu hospedaje
+                </p>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <!-- Desayuno -->
+                    <div
+                        class="group relative overflow-hidden rounded-2xl h-72 shadow-lg hover:shadow-2xl transition-all duration-500 cursor-pointer hover:-translate-y-2">
+                        <img src="restaurante.jpg" alt="Desayuno campestre incluido"
+                            class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                        <div
+                            class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent group-hover:from-black/95 transition-all duration-300">
+                        </div>
+
+                        <div class="absolute inset-0 flex flex-col items-center justify-end p-6 text-center">
+                            <h4 class="text-2xl font-bold text-white mb-2">Restaurante Incluido</h4>
+                            <p class="text-white/90 text-sm leading-relaxed">
+                                Acceso a nuestro restaurante con comida tradicional preparada a la leña. Sabores
+                                auténticos durante tu estadía
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Piscina -->
+                    <div
+                        class="group relative overflow-hidden rounded-2xl h-72 shadow-lg hover:shadow-2xl transition-all duration-500 cursor-pointer hover:-translate-y-2">
+                        <img src="piscina-aerea.jpg" alt="Piscina con acceso ilimitado"
+                            class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                        <div
+                            class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent group-hover:from-black/95 transition-all duration-300">
+                        </div>
+
+                        <div class="absolute inset-0 flex flex-col items-center justify-end p-6 text-center">
+                            <h4 class="text-2xl font-bold text-white mb-2">Piscinas y Áreas Acuáticas</h4>
+                            <p class="text-white/90 text-sm leading-relaxed">
+                                Acceso ilimitado a piscinas con vista panorámica, toboganes y áreas recreativas para
+                                toda la familia
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Recreación -->
+                    <div
+                        class="group relative overflow-hidden rounded-2xl h-72 shadow-lg hover:shadow-2xl transition-all duration-500 cursor-pointer hover:-translate-y-2">
+                        <img src="juegos-acuaticos.jpg" alt="Áreas de recreación y naturaleza"
+                            class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                        <div
+                            class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent group-hover:from-black/95 transition-all duration-300">
+                        </div>
+
+                        <div class="absolute inset-0 flex flex-col items-center justify-end p-6 text-center">
+                            <h4 class="text-2xl font-bold text-white mb-2">Juegos Acuáticos</h4>
+                            <p class="text-white/90 text-sm leading-relaxed">
+                                Toboganes coloridos, chorros de agua y juegos interactivos para la diversión de los
+                                niños
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CTA Section -->
+            <div class="bg-gradient-to-r from-[#0d1b11] to-[#14291a] rounded-3xl p-8 md:p-12 text-center shadow-2xl">
+                <h3 class="text-3xl md:text-4xl font-bold text-white mb-4">
+                    ¿Listo para tu Escapada Campestre?
+                </h3>
+                <p class="text-white/80 text-lg mb-6 max-w-2xl mx-auto">
+                    Reserva ahora y disfruta de descuentos especiales. Precios desde S/ 80 por noche.
+                </p>
+                <div class="flex justify-center">
+                    <button onclick="openEventModal()"
+                        class="group flex items-center justify-center gap-2 px-8 py-4 bg-primary hover:bg-primary/90 text-[#0d1b11] font-bold rounded-xl shadow-lg hover:shadow-xl transition-all hover:scale-105">
+                        <span class="material-symbols-outlined">event_available</span>
+                        <span>Consultar Disponibilidad</span>
+                        <span
+                            class="material-symbols-outlined group-hover:translate-x-1 transition-transform">arrow_forward</span>
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="py-16 md:py-24 bg-background-light dark:bg-background-dark overflow-hidden" id="eventos">
+        <div class="max-w-[1280px] mx-auto px-4">
+
+            <!-- Section Header -->
+            <div class="text-center mb-12">
+                <div
+                    class="inline-flex items-center justify-center px-4 py-1.5 rounded-full bg-primary/20 text-primary font-bold text-xs uppercase tracking-wider mb-4">
+                    Diversión Garantizada
+                </div>
+                <h2 class="text-4xl md:text-5xl font-bold text-[#0d1b11] dark:text-white mb-4">Eventos y Shows en Vivo
+                </h2>
+                <p class="text-lg text-[#0d1b11]/70 dark:text-white/70 max-w-3xl mx-auto">
+                    Disfruta de orquestas en vivo todos los fines de semana, shows folclóricos y actividades para
+                    toda la familia. ¡Música, baile y alegría en un ambiente campestre único!
+                </p>
+            </div>
+
+            <!-- Events Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
+
+                <!-- Event Card 1 -->
+                <div
+                    class="group relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500">
+                    <img src="https://images.unsplash.com/photo-1514320291840-2e0a9bf2a9ae?w=800&q=80"
+                        alt="Orquesta en vivo"
+                        class="w-full h-80 object-cover transition-transform duration-700 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent"></div>
+
+                    <div class="absolute inset-0 flex flex-col justify-end p-6">
+                        <div class="flex items-center gap-3 mb-3">
+                            <div
+                                class="flex flex-col items-center justify-center w-16 h-16 bg-primary rounded-xl shrink-0">
+                                <span class="font-bold text-xs uppercase text-[#0d1b11]">Sáb</span>
+                                <span class="text-2xl font-black text-[#0d1b11]">28</span>
+                            </div>
+                            <div>
+                                <h3 class="text-2xl font-bold text-white mb-1">Orquesta "Sabor Latino"</h3>
+                                <div class="flex items-center gap-2 text-sm text-white/90">
+                                    <span class="material-symbols-outlined text-base">schedule</span>
+                                    <span>1:00 PM - 6:00 PM</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-2 text-sm text-white/80">
+                            <span class="material-symbols-outlined text-base">location_on</span>
+                            <span>Escenario Principal</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Event Card 2 -->
+                <div
+                    class="group relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500">
+                    <img src="evento-familiar.jpg" alt="Show folclórico"
+                        class="w-full h-80 object-cover transition-transform duration-700 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent"></div>
+
+                    <div class="absolute inset-0 flex flex-col justify-end p-6">
+                        <div class="flex items-center gap-3 mb-3">
+                            <div
+                                class="flex flex-col items-center justify-center w-16 h-16 bg-primary rounded-xl shrink-0">
+                                <span class="font-bold text-xs uppercase text-[#0d1b11]">Dom</span>
+                                <span class="text-2xl font-black text-[#0d1b11]">29</span>
+                            </div>
+                            <div>
+                                <h3 class="text-2xl font-bold text-white mb-1">Eventos Familiares</h3>
+                                <div class="flex items-center gap-2 text-sm text-white/90">
+                                    <span class="material-symbols-outlined text-base">schedule</span>
+                                    <span>2:30 PM - 5:00 PM</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-2 text-sm text-white/80">
+                            <span class="material-symbols-outlined text-base">location_on</span>
+                            <span>Área de Piscinas</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Features Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+
+                <!-- Música en Vivo -->
+                <div
+                    class="group relative overflow-hidden rounded-2xl h-64 shadow-lg hover:shadow-2xl transition-all duration-500 cursor-pointer hover:-translate-y-2">
+                    <img src="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=600&q=80"
+                        alt="Música en vivo"
+                        class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                    <div
+                        class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent group-hover:from-black/95 transition-all duration-300">
+                    </div>
+
+                    <div class="absolute inset-0 flex flex-col items-center justify-end p-6 text-center">
+                        <h4 class="text-xl font-bold text-white mb-2">Música en Vivo</h4>
+                        <p class="text-white/90 text-sm leading-relaxed">
+                            Orquestas y shows en vivo
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Eventos Privados -->
+                <div
+                    class="group relative overflow-hidden rounded-2xl h-64 shadow-lg hover:shadow-2xl transition-all duration-500 cursor-pointer hover:-translate-y-2">
+                    <img src="https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?w=600&q=80"
+                        alt="Eventos privados"
+                        class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                    <div
+                        class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent group-hover:from-black/95 transition-all duration-300">
+                    </div>
+
+                    <div class="absolute inset-0 flex flex-col items-center justify-end p-6 text-center">
+                        <h4 class="text-xl font-bold text-white mb-2">Eventos Privados</h4>
+                        <p class="text-white/90 text-sm leading-relaxed">
+                            Celebra tus momentos especiales
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Para Grupos -->
+                <div
+                    class="group relative overflow-hidden rounded-2xl h-64 shadow-lg hover:shadow-2xl transition-all duration-500 cursor-pointer hover:-translate-y-2">
+                    <img src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?w=600&q=80"
+                        alt="Eventos para grupos"
+                        class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                    <div
+                        class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent group-hover:from-black/95 transition-all duration-300">
+                    </div>
+
+                    <div class="absolute inset-0 flex flex-col items-center justify-end p-6 text-center">
+                        <h4 class="text-xl font-bold text-white mb-2">Para Grupos</h4>
+                        <p class="text-white/90 text-sm leading-relaxed">
+                            Espacios para eventos grandes
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Catering Incluido -->
+                <div
+                    class="group relative overflow-hidden rounded-2xl h-64 shadow-lg hover:shadow-2xl transition-all duration-500 cursor-pointer hover:-translate-y-2">
+                    <img src="https://images.unsplash.com/photo-1555244162-803834f70033?w=600&q=80"
+                        alt="Catering y comida"
+                        class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                    <div
+                        class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent group-hover:from-black/95 transition-all duration-300">
+                    </div>
+
+                    <div class="absolute inset-0 flex flex-col items-center justify-end p-6 text-center">
+                        <h4 class="text-xl font-bold text-white mb-2">Catering Incluido</h4>
+                        <p class="text-white/90 text-sm leading-relaxed">
+                            Comida tradicional a la leña
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- CTA Banner -->
+            <div class="bg-gradient-to-r from-[#0d1b11] to-[#14291a] rounded-3xl p-8 md:p-12 text-center shadow-2xl">
+                <h3 class="text-3xl md:text-4xl font-bold text-white mb-4">
+                    ¿Quieres Organizar tu Evento?
+                </h3>
+                <p class="text-white/80 text-lg mb-6 max-w-2xl mx-auto">
+                    Cumpleaños, aniversarios, eventos corporativos o reuniones familiares. Tenemos el espacio perfecto
+                    para ti.
+                </p>
+                <button onclick="openEventsModal()"
+                    class="group inline-flex items-center gap-3 px-8 py-4 bg-primary hover:bg-primary/90 text-[#0d1b11] font-bold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
+                    <span class="material-symbols-outlined">celebration</span>
+                    <span>Organiza tu Evento Privado</span>
+                    <span
+                        class="material-symbols-outlined group-hover:translate-x-1 transition-transform">arrow_forward</span>
+                </button>
+            </div>
+
+        </div>
+    </section>
+    <section
+        class="py-20 bg-gradient-to-br from-white via-[#f8fdf9] to-[#e7f3ea] dark:bg-gradient-to-br dark:from-[#14291a] dark:via-[#102215] dark:to-[#0d1b11]">
+        <div class="max-w-[1280px] mx-auto px-4">
+            <!-- Section Header -->
+            <div class="text-center mb-12">
+                <div
+                    class="inline-flex items-center justify-center px-4 py-1.5 rounded-full bg-primary/20 text-primary font-bold text-xs uppercase tracking-wider mb-4">
+                    Descubre Nuestro Lugar
+                </div>
+                <h2 class="text-4xl md:text-5xl font-bold text-[#0d1b11] dark:text-white mb-4">Nuestros Espacios</h2>
+                <p class="text-lg text-[#0d1b11]/70 dark:text-white/70 max-w-2xl mx-auto">
+                    Cada rincón diseñado para tu comodidad y disfrute. Naturaleza, diversión y descanso en un solo
+                    lugar.
+                </p>
+            </div>
+
+            <!-- Spaces Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+
+                <!-- Habitaciones - Featured Large Card -->
+                <div
+                    class="md:col-span-2 md:row-span-2 rounded-3xl overflow-hidden relative group shadow-2xl hover:shadow-3xl transition-all duration-500 hover:-translate-y-1">
+                    <img class="w-full h-full min-h-[600px] object-cover transition-transform duration-700 group-hover:scale-105"
+                        data-alt="luxury rustic hotel room with view of nature" src="piscina-personas.jpg" />
+                    <div
+                        class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent group-hover:from-black/95 transition-all duration-500">
+                    </div>
+
+                    <div class="absolute bottom-0 left-0 right-0 p-8">
+                        <div class="flex items-center gap-3 mb-4">
+                            <h3 class="text-3xl font-bold text-white">Espacios para Eventos</h3>
+                        </div>
+                        <p class="text-white/90 text-base mb-4 leading-relaxed">
+                            Amplias áreas para celebraciones familiares, eventos corporativos y reuniones especiales.
+                            Disfruta de nuestras instalaciones con piscina y zonas recreativas.
+                        </p>
+                        <div class="flex flex-wrap gap-3">
+                            <span
+                                class="flex items-center gap-2 bg-white/10 backdrop-blur-sm px-3 py-1.5 rounded-full text-white text-sm">
+                                <span class="material-symbols-outlined text-base">pool</span>
+                                Piscinas
+                            </span>
+                            <span
+                                class="flex items-center gap-2 bg-white/10 backdrop-blur-sm px-3 py-1.5 rounded-full text-white text-sm">
+                                <span class="material-symbols-outlined text-base">celebration</span>
+                                Eventos
+                            </span>
+                            <span
+                                class="flex items-center gap-2 bg-white/10 backdrop-blur-sm px-3 py-1.5 rounded-full text-white text-sm">
+                                <span class="material-symbols-outlined text-base">restaurant</span>
+                                Restaurante
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Piscina -->
+                <div
+                    class="rounded-3xl overflow-hidden relative group shadow-xl hover:shadow-2xl transition-all duration-500 hover:-translate-y-1">
+                    <img class="w-full h-[290px] object-cover transition-transform duration-700 group-hover:scale-110"
+                        data-alt="large swimming pool with people having fun" src="piscina-aerea.jpg" />
+                    <div
+                        class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent group-hover:from-black/95 transition-all duration-500">
+                    </div>
+                    <div class="absolute bottom-0 left-0 right-0 p-6">
+                        <div class="flex items-center gap-3 mb-2">
+                            <h3 class="text-2xl font-bold text-white">Piscina</h3>
+                        </div>
+                        <p class="text-white/90 text-sm leading-relaxed">
+                            Piscina con vista panorámica, toboganes y áreas recreativas. Diversión garantizada para toda
+                            la familia.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Jardines -->
+                <div
+                    class="rounded-3xl overflow-hidden relative group shadow-xl hover:shadow-2xl transition-all duration-500 hover:-translate-y-1">
+                    <img class="w-full h-[290px] object-cover transition-transform duration-700 group-hover:scale-110"
+                        data-alt="green garden area with children playing" src="juegos-acuaticos.jpg" />
+                    <div
+                        class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent group-hover:from-black/95 transition-all duration-500">
+                    </div>
+                    <div class="absolute bottom-0 left-0 right-0 p-6">
+                        <div class="flex items-center gap-3 mb-2">
+                            <h3 class="text-2xl font-bold text-white">Juegos Acuáticos</h3>
+                        </div>
+                        <p class="text-white/90 text-sm leading-relaxed">
+                            Toboganes coloridos, chorros de agua y juegos interactivos para la diversión de los niños.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Restaurante - Wide Card -->
+                <div
+                    class="md:col-span-3 rounded-3xl overflow-hidden relative group shadow-xl hover:shadow-2xl transition-all duration-500 hover:-translate-y-1">
+                    <img class="w-full h-[320px] object-cover transition-transform duration-700 group-hover:scale-105"
+                        data-alt="restaurant outdoor dining area with wooden tables" src="restaurante.jpg" />
+                    <div
+                        class="absolute inset-0 bg-gradient-to-r from-black/90 via-black/50 to-transparent group-hover:from-black/95 transition-all duration-500">
+                    </div>
+                    <div class="absolute inset-0 flex items-center">
+                        <div class="p-8 md:p-12 max-w-2xl">
+                            <div class="flex items-center gap-3 mb-4">
+                                <h3 class="text-3xl font-bold text-white">Área de Restaurante</h3>
+                            </div>
+                            <p class="text-white/90 text-lg leading-relaxed mb-4">
+                                Disfruta de nuestra deliciosa gastronomía tradicional preparada a la leña en un ambiente
+                                campestre único rodeado de naturaleza.
+                            </p>
+                            <div class="flex flex-wrap gap-3">
+                                <span
+                                    class="flex items-center gap-2 bg-white/10 backdrop-blur-sm px-3 py-1.5 rounded-full text-white text-sm">
+                                    <span class="material-symbols-outlined text-base">outdoor_grill</span>
+                                    Cocina a la leña
+                                </span>
+                                <span
+                                    class="flex items-center gap-2 bg-white/10 backdrop-blur-sm px-3 py-1.5 rounded-full text-white text-sm">
+                                    <span class="material-symbols-outlined text-base">deck</span>
+                                    Terraza al aire libre
+                                </span>
+                                <span
+                                    class="flex items-center gap-2 bg-white/10 backdrop-blur-sm px-3 py-1.5 rounded-full text-white text-sm">
+                                    <span class="material-symbols-outlined text-base">landscape</span>
+                                    Vista panorámica
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+    <section class="py-20 bg-[#102215] relative overflow-hidden">
+        <div class="absolute inset-0 opacity-10"
+            style="background-image: radial-gradient(#13ec49 1px, transparent 1px); background-size: 24px 24px;"></div>
+        <div class="max-w-[1280px] mx-auto px-4 relative z-10">
+            <div
+                class="bg-primary rounded-3xl p-8 md:p-12 flex flex-col md:flex-row items-center justify-between gap-8 shadow-[0_0_50px_rgba(19,236,73,0.2)]">
+                <div class="md:w-2/3">
+                    <h2 class="text-[#0d1b11] text-3xl md:text-5xl font-black mb-4">¡Escapada de Fin de Semana!</h2>
+                    <p class="text-[#0d1b11] text-lg md:text-xl font-medium mb-2">20% de descuento en alojamiento +
+                        desayuno incluido.</p>
+                    <p class="text-[#0d1b11]/80 text-sm">*Válido para reservas de viernes a domingo.</p>
+                </div>
+                <div class="md:w-1/3 flex justify-center md:justify-end">
+                    <a href="#hospedaje"
+                        class="bg-[#0d1b11] text-white px-8 py-4 rounded-xl font-bold text-lg hover:bg-white hover:text-[#0d1b11] transition-colors shadow-xl inline-block">
+                        Aprovechar Oferta
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section
+        class="py-20 bg-gradient-to-br from-[#f8fdf9] via-white to-[#e7f3ea] dark:bg-gradient-to-br dark:from-[#0d1b11] dark:via-[#14291a] dark:to-[#102215]"
+        id="ubicacion">
+        <div class="max-w-[1280px] mx-auto px-4">
+
+            <!-- Section Header -->
+            <div class="text-center mb-12">
+                <div
+                    class="inline-flex items-center justify-center px-4 py-1.5 rounded-full bg-primary/20 text-primary font-bold text-xs uppercase tracking-wider mb-4">
+                    Encuéntranos
+                </div>
+                <h2 class="text-4xl md:text-5xl font-bold text-[#0d1b11] dark:text-white mb-4">Visítanos</h2>
+                <p class="text-lg text-[#0d1b11]/70 dark:text-white/70 max-w-2xl mx-auto">
+                    Estamos ubicados en un entorno natural privilegiado, fácil de llegar y con amplio estacionamiento.
+                </p>
+            </div>
+
+            <div
+                class="grid grid-cols-1 lg:grid-cols-2 gap-8 rounded-3xl overflow-hidden bg-white dark:bg-[#1a3322] shadow-2xl">
+
+                <!-- Info Panel -->
+                <div class="p-8 md:p-12 flex flex-col justify-center">
+
+                    <!-- Contact Cards -->
+                    <div class="space-y-6 mb-8">
+
+                        <!-- Dirección -->
+                        <div
+                            class="group flex gap-4 p-6 rounded-2xl bg-gradient-to-br from-primary/5 to-transparent hover:from-primary/10 transition-all duration-300 border border-gray-100 dark:border-white/5">
+                            <div class="flex-shrink-0">
+                                <div
+                                    class="w-14 h-14 rounded-full bg-primary/20 flex items-center justify-center group-hover:scale-110 transition-transform">
+                                    <span class="material-symbols-outlined text-primary text-2xl">location_on</span>
+                                </div>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-[#0d1b11] dark:text-white text-lg mb-2">Dirección</h4>
+                                <p class="text-gray-600 dark:text-gray-400 leading-relaxed">
+                                    Club Campestre MI DESCANSO<br>
+                                    Ate 15479, Lima, Perú
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Horario -->
+                        <div
+                            class="group flex gap-4 p-6 rounded-2xl bg-gradient-to-br from-primary/5 to-transparent hover:from-primary/10 transition-all duration-300 border border-gray-100 dark:border-white/5">
+                            <div class="flex-shrink-0">
+                                <div
+                                    class="w-14 h-14 rounded-full bg-primary/20 flex items-center justify-center group-hover:scale-110 transition-transform">
+                                    <span class="material-symbols-outlined text-primary text-2xl">schedule</span>
+                                </div>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-[#0d1b11] dark:text-white text-lg mb-2">Horario de Atención
+                                </h4>
+                                <p class="text-gray-600 dark:text-gray-400">Lun - Vie: 9:00 AM - 6:00 PM</p>
+                                <p class="text-gray-600 dark:text-gray-400">Sáb - Dom: 9:00 AM - 8:00 PM</p>
+                            </div>
+                        </div>
+
+                        <!-- Contacto -->
+                        <div
+                            class="group flex gap-4 p-6 rounded-2xl bg-gradient-to-br from-primary/5 to-transparent hover:from-primary/10 transition-all duration-300 border border-gray-100 dark:border-white/5">
+                            <div class="flex-shrink-0">
+                                <div
+                                    class="w-14 h-14 rounded-full bg-primary/20 flex items-center justify-center group-hover:scale-110 transition-transform">
+                                    <span class="material-symbols-outlined text-primary text-2xl">call</span>
+                                </div>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-[#0d1b11] dark:text-white text-lg mb-2">Contacto</h4>
+                                <p class="text-gray-600 dark:text-gray-400">+51 987 654 321</p>
+                                <p class="text-gray-600 dark:text-gray-400">contacto@restaurantecampestre.com</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Action Buttons -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <a href="https://waze.com/ul?ll=-12.0058346,-76.8315147&navigate=yes" target="_blank"
+                            class="flex items-center justify-center gap-2 px-6 py-4 rounded-xl bg-primary hover:bg-primary/90 text-[#0d1b11] font-bold shadow-lg hover:shadow-xl transition-all hover:scale-105">
+                            <span class="material-symbols-outlined">navigation</span>
+                            Abrir en Waze
+                        </a>
+                        <a href="https://www.google.com/maps/place/Club+campestre+MI+DESCANSO/@-12.0058346,-76.8315147,19z"
+                            target="_blank"
+                            class="flex items-center justify-center gap-2 px-6 py-4 rounded-xl bg-white dark:bg-[#14291a] border-2 border-primary text-primary font-bold hover:bg-primary hover:text-[#0d1b11] transition-all hover:scale-105">
+                            <span class="material-symbols-outlined">map</span>
+                            Google Maps
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Map -->
+                <div class="relative h-[500px] lg:h-auto bg-gray-200 overflow-hidden rounded-r-3xl">
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d344.93965649487944!2d-76.83151470731666!3d-12.0058346241702!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9105c3a15f06a5f1%3A0xd1ff9df57d3e537e!2sClub%20campestre%20MI%20DESCANSO!5e0!3m2!1ses-419!2spe!4v1766538257842!5m2!1ses-419!2spe"
+                        width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade" class="w-full h-full">
+                    </iframe>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Menu Modal -->
+    <!-- Menu Modal - Rustic Restaurant Menu Design -->
+    <div id="menuModal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/80 backdrop-blur-sm p-3">
+        <div class="relative bg-[#fdfdf9] rounded-lg max-w-7xl w-full h-[96vh] overflow-hidden shadow-[0_20px_60px_rgba(0,0,0,0.6)] border-[6px] border-[#3a4d2f]"
+            style="background: linear-gradient(135deg, #fdfdf9 0%, #f8f6f0 50%, #f5f3e8 100%);">
+
+            <!-- Decorative corners -->
+            <div class="absolute top-0 left-0 w-24 h-24 border-t-4 border-l-4 border-[#3a4d2f]/50"></div>
+            <div class="absolute top-0 right-0 w-24 h-24 border-t-4 border-r-4 border-[#3a4d2f]/50"></div>
+            <div class="absolute bottom-0 left-0 w-24 h-24 border-b-4 border-l-4 border-[#3a4d2f]/50"></div>
+            <div class="absolute bottom-0 right-0 w-24 h-24 border-b-4 border-r-4 border-[#3a4d2f]/50"></div>
+
+            <!-- Close Button -->
+            <button onclick="closeMenuModal()"
+                class="absolute top-4 right-4 z-50 w-10 h-10 rounded-full bg-[#3a4d2f]/80 hover:bg-[#3a4d2f] flex items-center justify-center transition-colors shadow-lg">
+                <span class="material-symbols-outlined text-white text-xl">close</span>
+            </button>
+
+            <!-- Content -->
+            <div class="h-full flex flex-col px-6 py-4">
+                <!-- Header -->
+                <div class="text-center mb-3">
+                    <div class="flex items-center justify-center gap-3 mb-2">
+                        <div class="h-px w-16 bg-gradient-to-r from-transparent to-[#4a5d3f]"></div>
+                        <img src="logo.png" alt="Mi Descanso" class="h-12 w-auto">
+                        <div class="h-px w-16 bg-gradient-to-l from-transparent to-[#4a5d3f]"></div>
+                    </div>
+                    <h2 class="text-3xl font-bold text-[#1a2614] mb-1" style="font-family: Georgia, serif;">Nuestra
+                        Carta</h2>
+                    <p class="text-[#3d4d32] italic text-sm">Mi Descanso - Restaurante Campestre</p>
+                    <div class="mt-1 flex items-center justify-center gap-2">
+                        <div class="h-0.5 w-10 bg-[#3a4d2f]"></div>
+                        <span class="text-[#4a5d3f] text-lg">✦</span>
+                        <div class="h-0.5 w-10 bg-[#3a4d2f]"></div>
+                    </div>
+                </div>
+
+                <!-- Menu Grid -->
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-4 max-w-6xl mx-auto flex-1">
+
+                    <!-- Column 1: Platos Fuertes -->
+                    <div>
+                        <div class="mb-2 text-center">
+                            <h3 class="text-lg font-bold text-[#1a2614] mb-1 pb-0.5 border-b-2 border-[#3a4d2f]"
+                                style="font-family: Georgia, serif;">Platos Fuertes</h3>
+                        </div>
+                        <div class="space-y-2">
+                            <div class="border-l-2 border-[#6b8e5f] pl-2">
+                                <div class="flex justify-between items-start mb-0.5">
+                                    <h4 class="text-xs font-semibold text-[#1a2614]">Bandeja Paisa</h4>
+                                    <span class="text-[#0d1b11] font-bold text-xs ml-2">S/ 35.00</span>
+                                </div>
+                                <p class="text-[10px] text-[#3d4d32]/80 italic leading-tight">Frijoles, arroz, carne,
+                                    chicharrón, huevo</p>
+                            </div>
+
+                            <div class="border-l-2 border-[#6b8e5f] pl-2">
+                                <div class="flex justify-between items-start mb-0.5">
+                                    <h4 class="text-xs font-semibold text-[#1a2614]">Trucha al Ajillo</h4>
+                                    <span class="text-[#0d1b11] font-bold text-sm ml-2">S/ 32.00</span>
+                                </div>
+                                <p class="text-xs text-[#3d4d32]/80 italic leading-tight">Trucha fresca con papas y
+                                    ensalada</p>
+                            </div>
+
+                            <div class="border-l-2 border-[#6b8e5f] pl-2">
+                                <div class="flex justify-between items-start mb-0.5">
+                                    <h4 class="text-xs font-semibold text-[#1a2614]">Lomo de Cerdo</h4>
+                                    <span class="text-[#0d1b11] font-bold text-sm ml-2">S/ 30.00</span>
+                                </div>
+                                <p class="text-xs text-[#3d4d32]/80 italic leading-tight">En salsa BBQ con vegetales</p>
+                            </div>
+
+                            <div class="border-l-2 border-[#6b8e5f] pl-2">
+                                <div class="flex justify-between items-start mb-0.5">
+                                    <h4 class="text-xs font-semibold text-[#1a2614]">Pollo Campesino</h4>
+                                    <span class="text-[#0d1b11] font-bold text-sm ml-2">S/ 28.00</span>
+                                </div>
+                                <p class="text-xs text-[#3d4d32]/80 italic leading-tight">Asado con papas y yuca frita
+                                </p>
+                            </div>
+
+                            <div class="border-l-2 border-[#6b8e5f] pl-2">
+                                <div class="flex justify-between items-start mb-0.5">
+                                    <h4 class="text-xs font-semibold text-[#1a2614]">Costillas BBQ</h4>
+                                    <span class="text-[#0d1b11] font-bold text-sm ml-2">S/ 38.00</span>
+                                </div>
+                                <p class="text-xs text-[#3d4d32]/80 italic leading-tight">Con papas y coleslaw</p>
+                            </div>
+
+                            <div class="border-l-2 border-[#6b8e5f] pl-2">
+                                <div class="flex justify-between items-start">
+                                    <h4 class="text-xs font-semibold text-[#1a2614]">Chuleta Valluna</h4>
+                                    <span class="text-[#0d1b11] font-bold text-sm ml-2">S/ 33.00</span>
+                                </div>
+                                <p class="text-xs text-[#3d4d32]/80 italic leading-tight">Apanada con arroz de coco</p>
+                            </div>
+                        </div>
+
+                        <!-- Sopas -->
+                        <div class="mt-4 mb-2 text-center">
+                            <h3 class="text-lg font-bold text-[#1a2614] mb-1 pb-1 border-b-2 border-[#3a4d2f]"
+                                style="font-family: Georgia, serif;">Sopas</h3>
+                        </div>
+                        <div class="space-y-1.5">
+                            <div class="border-l-2 border-[#6b8e5f] pl-2">
+                                <div class="flex justify-between items-start">
+                                    <h4 class="text-xs font-semibold text-[#1a2614]">Sancocho Gallina</h4>
+                                    <span class="text-[#0d1b11] font-bold text-sm ml-2">S/ 18.00</span>
+                                </div>
+                            </div>
+
+                            <div class="border-l-2 border-[#6b8e5f] pl-2">
+                                <div class="flex justify-between items-start">
+                                    <h4 class="text-xs font-semibold text-[#1a2614]">Ajiaco</h4>
+                                    <span class="text-[#0d1b11] font-bold text-sm ml-2">S/ 16.00</span>
+                                </div>
+                            </div>
+
+                            <div class="border-l-2 border-[#6b8e5f] pl-2">
+                                <div class="flex justify-between items-start">
+                                    <h4 class="text-xs font-semibold text-[#1a2614]">Mondongo</h4>
+                                    <span class="text-[#0d1b11] font-bold text-sm ml-2">S/ 15.00</span>
+                                </div>
+                            </div>
+
+                            <div class="border-l-2 border-[#6b8e5f] pl-2">
+                                <div class="flex justify-between items-start">
+                                    <h4 class="text-xs font-semibold text-[#1a2614]">Caldo Costilla</h4>
+                                    <span class="text-[#0d1b11] font-bold text-sm ml-2">S/ 14.00</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Column 2: Bebidas y Postres -->
+                    <div>
+                        <div class="mb-2 text-center">
+                            <h3 class="text-lg font-bold text-[#1a2614] mb-1 pb-1 border-b-2 border-[#3a4d2f]"
+                                style="font-family: Georgia, serif;">Bebidas</h3>
+                        </div>
+                        <div class="space-y-1.5">
+                            <div class="border-l-2 border-[#6b8e5f] pl-2">
+                                <div class="flex justify-between items-start">
+                                    <h4 class="text-xs font-semibold text-[#1a2614]">Limonada Natural</h4>
+                                    <span class="text-[#0d1b11] font-bold text-sm ml-2">S/ 6.00</span>
+                                </div>
+                            </div>
+
+                            <div class="border-l-2 border-[#6b8e5f] pl-2">
+                                <div class="flex justify-between items-start">
+                                    <h4 class="text-xs font-semibold text-[#1a2614]">Jugo Natural</h4>
+                                    <span class="text-[#0d1b11] font-bold text-sm ml-2">S/ 7.00</span>
+                                </div>
+                            </div>
+
+                            <div class="border-l-2 border-[#6b8e5f] pl-2">
+                                <div class="flex justify-between items-start">
+                                    <h4 class="text-xs font-semibold text-[#1a2614]">Café Campesino</h4>
+                                    <span class="text-[#0d1b11] font-bold text-sm ml-2">S/ 5.00</span>
+                                </div>
+                            </div>
+
+                            <div class="border-l-2 border-[#6b8e5f] pl-2">
+                                <div class="flex justify-between items-start">
+                                    <h4 class="text-xs font-semibold text-[#1a2614]">Chocolate Caliente</h4>
+                                    <span class="text-[#0d1b11] font-bold text-sm ml-2">S/ 8.00</span>
+                                </div>
+                            </div>
+
+                            <div class="border-l-2 border-[#6b8e5f] pl-2">
+                                <div class="flex justify-between items-start">
+                                    <h4 class="text-xs font-semibold text-[#1a2614]">Gaseosa</h4>
+                                    <span class="text-[#0d1b11] font-bold text-sm ml-2">S/ 4.00</span>
+                                </div>
+                            </div>
+
+                            <div class="border-l-2 border-[#6b8e5f] pl-2">
+                                <div class="flex justify-between items-start">
+                                    <h4 class="text-xs font-semibold text-[#1a2614]">Agua Embotellada</h4>
+                                    <span class="text-[#0d1b11] font-bold text-sm ml-2">S/ 3.00</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Postres -->
+                        <div class="mt-4 mb-2 text-center">
+                            <h3 class="text-lg font-bold text-[#1a2614] mb-1 pb-1 border-b-2 border-[#3a4d2f]"
+                                style="font-family: Georgia, serif;">Postres</h3>
+                        </div>
+                        <div class="space-y-1.5">
+                            <div class="border-l-2 border-[#6b8e5f] pl-2">
+                                <div class="flex justify-between items-start mb-0.5">
+                                    <h4 class="text-xs font-semibold text-[#1a2614]">Tres Leches</h4>
+                                    <span class="text-[#0d1b11] font-bold text-sm ml-2">S/ 12.00</span>
+                                </div>
+                                <p class="text-xs text-[#3d4d32]/80 italic leading-tight">Torta casera</p>
+                            </div>
+
+                            <div class="border-l-2 border-[#6b8e5f] pl-2">
+                                <div class="flex justify-between items-start mb-0.5">
+                                    <h4 class="text-xs font-semibold text-[#1a2614]">Flan de Caramelo</h4>
+                                    <span class="text-[#0d1b11] font-bold text-sm ml-2">S/ 10.00</span>
+                                </div>
+                                <p class="text-xs text-[#3d4d32]/80 italic leading-tight">Flan tradicional</p>
+                            </div>
+
+                            <div class="border-l-2 border-[#6b8e5f] pl-2">
+                                <div class="flex justify-between items-start mb-0.5">
+                                    <h4 class="text-xs font-semibold text-[#1a2614]">Postre de Natas</h4>
+                                    <span class="text-[#0d1b11] font-bold text-sm ml-2">S/ 11.00</span>
+                                </div>
+                                <p class="text-xs text-[#3d4d32]/80 italic leading-tight">Con arequipe</p>
+                            </div>
+                        </div>
+
+                        <!-- Especialidades -->
+                        <div class="mt-4 mb-2 text-center">
+                            <h3 class="text-lg font-bold text-[#1a2614] mb-1 pb-1 border-b-2 border-[#3a4d2f]"
+                                style="font-family: Georgia, serif;">Especialidades</h3>
+                        </div>
+                        <div class="space-y-1.5">
+                            <div class="border-l-2 border-[#6b8e5f] pl-2">
+                                <div class="flex justify-between items-start mb-0.5">
+                                    <h4 class="text-xs font-semibold text-[#1a2614]">Cuy Chactado</h4>
+                                    <span class="text-[#0d1b11] font-bold text-sm ml-2">S/ 55.00</span>
+                                </div>
+                                <p class="text-xs text-[#3d4d32]/80 italic leading-tight">Plato andino tradicional</p>
+                            </div>
+
+                            <div class="border-l-2 border-[#6b8e5f] pl-2">
+                                <div class="flex justify-between items-start mb-0.5">
+                                    <h4 class="text-xs font-semibold text-[#1a2614]">Lechona</h4>
+                                    <span class="text-[#0d1b11] font-bold text-sm ml-2">S/ 42.00</span>
+                                </div>
+                                <p class="text-xs text-[#3d4d32]/80 italic leading-tight">Especialidad de la casa</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Column 3: Decorative Info -->
+                    <div class="flex flex-col items-center justify-center">
+                        <div class="bg-[#e8f0e0] rounded-lg p-6 border-2 border-[#3a4d2f] text-center shadow-md">
+                            <span class="text-5xl mb-3 block">🍽️</span>
+                            <h3 class="text-lg font-bold text-[#1a2614] mb-3" style="font-family: Georgia, serif;">
+                                Disfruta</h3>
+                            <p class="text-[#2d3a26] leading-relaxed mb-4 italic text-sm">
+                                Todos nuestros platos son preparados con ingredientes frescos y el amor de la cocina
+                                tradicional
+                            </p>
+                            <div class="space-y-2 text-xs text-[#1a2614]">
+                                <div class="flex items-center justify-center gap-2">
+                                    <span class="material-symbols-outlined text-base">schedule</span>
+                                    <span>Lun - Dom: 8:00 AM - 8:00 PM</span>
+                                </div>
+                                <div class="flex items-center justify-center gap-2">
+                                    <span class="material-symbols-outlined text-base">check_circle</span>
+                                    <span>Servicio a la mesa</span>
+                                </div>
+                                <div class="flex items-center justify-center gap-2">
+                                    <span class="material-symbols-outlined text-base">groups</span>
+                                    <span>Eventos y grupos</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mt-4 text-center">
+                            <p class="text-[#1a2614] font-semibold mb-2 text-sm">Reservaciones</p>
+                            <a href="https://wa.me/51987654321?text=Hola,%20me%20gustaría%20hacer%20una%20consulta%20sobre%20el%20menú%20de%20Mi%20Descanso"
+                                target="_blank"
+                                class="inline-flex items-center gap-2 px-5 py-2 bg-[#13EC49] hover:bg-[#11d440] text-[#0d1b11] rounded-lg transition-colors shadow-lg text-sm font-bold">
+                                <span class="material-symbols-outlined text-lg">chat</span>
+                                <span class="font-bold">Escríbenos al WhatsApp</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Footer -->
+                <div class="mt-3 text-center border-t-2 border-[#3a4d2f] pt-2">
+                    <p class="text-[#1a2614] text-[10px] italic">✦ Gracias por preferirnos ✦</p>
+                    <p class="text-[#2d3a26] text-[9px] mt-0.5">Los precios están sujetos a cambios sin previo aviso</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Event Booking Modal -->
+    <div id="eventModal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/80 backdrop-blur-sm p-4">
+        <div
+            class="relative bg-white dark:bg-[#1a3322] rounded-3xl max-w-2xl w-full max-h-[90vh] overflow-y-auto shadow-2xl">
+            <!-- Modal Header -->
+            <div
+                class="sticky top-0 bg-gradient-to-r from-primary to-primary/80 px-8 py-6 flex items-center justify-between border-b border-white/10 z-10 rounded-t-3xl">
+                <div class="flex items-center gap-3">
+                    <span class="material-symbols-outlined text-3xl text-[#0d1b11]">bed</span>
+                    <div>
+                        <h2 class="text-2xl font-bold text-[#0d1b11]">Reserva tu Habitación</h2>
+                        <p class="text-[#0d1b11]/80 text-sm mt-1">Déjanos tus datos y te contactaremos pronto</p>
+                    </div>
+                </div>
+                <button onclick="closeEventModal()"
+                    class="w-10 h-10 rounded-full bg-[#0d1b11]/20 hover:bg-[#0d1b11]/30 flex items-center justify-center transition-colors">
+                    <span class="material-symbols-outlined text-[#0d1b11]">close</span>
+                </button>
+            </div>
+
+            <!-- Modal Content -->
+            <div class="px-8 py-6">
+                <form id="eventForm" onsubmit="handleEventSubmit(event)" class="space-y-6">
+
+                    <!-- Nombre Completo -->
+                    <div>
+                        <label for="nombre" class="block text-sm font-semibold text-[#0d1b11] dark:text-white mb-2">
+                            <span class="flex items-center gap-2">
+                                <span class="material-symbols-outlined text-lg">person</span>
+                                Nombre Completo *
+                            </span>
+                        </label>
+                        <input type="text" id="nombre" name="nombre" required
+                            class="w-full px-4 py-3 rounded-xl border-2 border-gray-200 dark:border-gray-700 bg-white dark:bg-[#14291a] text-[#0d1b11] dark:text-white focus:border-primary focus:outline-none transition-colors"
+                            placeholder="Ej: Juan Pérez">
+                    </div>
+
+                    <!-- Teléfono -->
+                    <div>
+                        <label for="telefono" class="block text-sm font-semibold text-[#0d1b11] dark:text-white mb-2">
+                            <span class="flex items-center gap-2">
+                                <span class="material-symbols-outlined text-lg">phone</span>
+                                Teléfono / WhatsApp *
+                            </span>
+                        </label>
+                        <input type="text" id="telefono" name="telefono" required pattern="[0-9]{9}" maxlength="9"
+                            inputmode="numeric" oninput="this.value = this.value.replace(/[^0-9]/g, '')"
+                            class="w-full px-4 py-3 rounded-xl border-2 border-gray-200 dark:border-gray-700 bg-white dark:bg-[#14291a] text-[#0d1b11] dark:text-white focus:border-primary focus:outline-none transition-colors"
+                            placeholder="Ej: 987654321">
+                    </div>
+
+                    <!-- Fecha Sugerida -->
+                    <div>
+                        <label for="fecha" class="block text-sm font-semibold text-[#0d1b11] dark:text-white mb-2">
+                            <span class="flex items-center gap-2">
+                                <span class="material-symbols-outlined text-lg">calendar_today</span>
+                                Fecha Sugerida *
+                            </span>
+                        </label>
+                        <input type="date" id="fecha" name="fecha" required
+                            class="w-full px-4 py-3 rounded-xl border-2 border-gray-200 dark:border-gray-700 bg-white dark:bg-[#14291a] text-[#0d1b11] dark:text-white focus:border-primary focus:outline-none transition-colors">
+                    </div>
+
+                    <!-- Tiempo de Estadía -->
+                    <div>
+                        <label for="horario" class="block text-sm font-semibold text-[#0d1b11] dark:text-white mb-2">
+                            <span class="flex items-center gap-2">
+                                <span class="material-symbols-outlined text-lg">schedule</span>
+                                Tiempo de Estadía *
+                            </span>
+                        </label>
+                        <select id="horario" name="horario" required
+                            class="w-full px-4 py-3 rounded-xl border-2 border-gray-200 dark:border-gray-700 bg-white dark:bg-[#14291a] text-[#0d1b11] dark:text-white focus:border-primary focus:outline-none transition-colors">
+                            <option value="">Selecciona la duración</option>
+                            <option value="1-noche">1 Noche</option>
+                            <option value="2-noches">2 Noches</option>
+                            <option value="3-noches">3 Noches</option>
+                            <option value="fin-semana">Fin de Semana (2-3 noches)</option>
+                            <option value="semana">Una Semana</option>
+                            <option value="mas-semana">Más de una semana</option>
+                        </select>
+                    </div>
+
+                    <!-- Tipo de Habitación -->
+                    <div>
+                        <label for="tipoEvento" class="block text-sm font-semibold text-[#0d1b11] dark:text-white mb-2">
+                            <span class="flex items-center gap-2">
+                                <span class="material-symbols-outlined text-lg">bed</span>
+                                Tipo de Habitación *
+                            </span>
+                        </label>
+                        <select id="tipoEvento" name="tipoEvento" required
+                            class="w-full px-4 py-3 rounded-xl border-2 border-gray-200 dark:border-gray-700 bg-white dark:bg-[#14291a] text-[#0d1b11] dark:text-white focus:border-primary focus:outline-none transition-colors">
+                            <option value="">Selecciona el tipo de habitación</option>
+                            <option value="simple">Habitación Simple (1 persona)</option>
+                            <option value="doble">Habitación Doble (2 personas)</option>
+                            <option value="familiar">Habitación Familiar (4-5 personas)</option>
+                            <option value="consultar">Consultar disponibilidad</option>
+                        </select>
+                    </div>
+
+                    <!-- Mensaje Adicional -->
+                    <div>
+                        <label for="mensaje" class="block text-sm font-semibold text-[#0d1b11] dark:text-white mb-2">
+                            <span class="flex items-center gap-2">
+                                <span class="material-symbols-outlined text-lg">chat</span>
+                                Mensaje o Detalles Adicionales
+                            </span>
+                        </label>
+                        <textarea id="mensaje" name="mensaje" rows="4"
+                            class="w-full px-4 py-3 rounded-xl border-2 border-gray-200 dark:border-gray-700 bg-white dark:bg-[#14291a] text-[#0d1b11] dark:text-white focus:border-primary focus:outline-none transition-colors resize-none"
+                            placeholder="Cuéntanos sobre tus preferencias o necesidades especiales..."></textarea>
+                    </div>
+
+                    <!-- Botones -->
+                    <div class="flex gap-4 pt-4">
+                        <button type="button" onclick="closeEventModal()"
+                            class="flex-1 px-6 py-3 rounded-xl border-2 border-gray-300 dark:border-gray-600 text-[#0d1b11] dark:text-white font-semibold hover:bg-gray-50 dark:hover:bg-[#14291a] transition-colors">
+                            Cancelar
+                        </button>
+                        <button type="submit"
+                            class="flex-1 px-6 py-3 rounded-xl bg-primary hover:bg-primary/90 text-[#0d1b11] font-bold shadow-lg hover:shadow-xl transition-all hover:scale-[1.02] flex items-center justify-center gap-2">
+                            <span class="material-symbols-outlined">send</span>
+                            <span>Enviar Solicitud</span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Events Modal (Separate from Room Booking) -->
+    <div id="eventsModal"
+        class="fixed inset-0 z-50 hidden items-center justify-center bg-black/80 backdrop-blur-sm p-4">
+        <div
+            class="relative bg-white dark:bg-[#1a3322] rounded-3xl max-w-2xl w-full max-h-[90vh] overflow-y-auto shadow-2xl">
+            <!-- Modal Header -->
+            <div
+                class="sticky top-0 bg-gradient-to-r from-primary to-primary/80 px-8 py-6 flex items-center justify-between border-b border-white/10 z-10 rounded-t-3xl">
+                <div class="flex items-center gap-3">
+                    <span class="material-symbols-outlined text-3xl text-[#0d1b11]">celebration</span>
+                    <div>
+                        <h2 class="text-2xl font-bold text-[#0d1b11]">Organiza tu Evento</h2>
+                        <p class="text-[#0d1b11]/80 text-sm mt-1">Déjanos tus datos y te contactaremos pronto</p>
+                    </div>
+                </div>
+                <button onclick="closeEventsModal()"
+                    class="w-10 h-10 rounded-full bg-[#0d1b11]/20 hover:bg-[#0d1b11]/30 flex items-center justify-center transition-colors">
+                    <span class="material-symbols-outlined text-[#0d1b11]">close</span>
+                </button>
+            </div>
+
+            <!-- Modal Content -->
+            <div class="px-8 py-6">
+                <form id="eventsForm" onsubmit="handleEventsSubmit(event)" class="space-y-6">
+
+                    <!-- Nombre Completo -->
+                    <div>
+                        <label for="nombreEvento"
+                            class="block text-sm font-semibold text-[#0d1b11] dark:text-white mb-2">
+                            <span class="flex items-center gap-2">
+                                <span class="material-symbols-outlined text-lg">person</span>
+                                Nombre Completo *
+                            </span>
+                        </label>
+                        <input type="text" id="nombreEvento" name="nombreEvento" required
+                            class="w-full px-4 py-3 rounded-xl border-2 border-gray-200 dark:border-gray-700 bg-white dark:bg-[#14291a] text-[#0d1b11] dark:text-white focus:border-primary focus:outline-none transition-colors"
+                            placeholder="Ej: Juan Pérez">
+                    </div>
+
+                    <!-- Teléfono -->
+                    <div>
+                        <label for="telefonoEvento"
+                            class="block text-sm font-semibold text-[#0d1b11] dark:text-white mb-2">
+                            <span class="flex items-center gap-2">
+                                <span class="material-symbols-outlined text-lg">phone</span>
+                                Teléfono / WhatsApp *
+                            </span>
+                        </label>
+                        <input type="text" id="telefonoEvento" name="telefonoEvento" required pattern="[0-9]{9}"
+                            maxlength="9" inputmode="numeric" oninput="this.value = this.value.replace(/[^0-9]/g, '')"
+                            class="w-full px-4 py-3 rounded-xl border-2 border-gray-200 dark:border-gray-700 bg-white dark:bg-[#14291a] text-[#0d1b11] dark:text-white focus:border-primary focus:outline-none transition-colors"
+                            placeholder="Ej: 987654321">
+                    </div>
+
+                    <!-- Fecha Sugerida -->
+                    <div>
+                        <label for="fechaEvento"
+                            class="block text-sm font-semibold text-[#0d1b11] dark:text-white mb-2">
+                            <span class="flex items-center gap-2">
+                                <span class="material-symbols-outlined text-lg">calendar_today</span>
+                                Fecha del Evento *
+                            </span>
+                        </label>
+                        <input type="date" id="fechaEvento" name="fechaEvento" required
+                            class="w-full px-4 py-3 rounded-xl border-2 border-gray-200 dark:border-gray-700 bg-white dark:bg-[#14291a] text-[#0d1b11] dark:text-white focus:border-primary focus:outline-none transition-colors">
+                    </div>
+
+                    <!-- Horario -->
+                    <div>
+                        <label for="horarioEvento"
+                            class="block text-sm font-semibold text-[#0d1b11] dark:text-white mb-2">
+                            <span class="flex items-center gap-2">
+                                <span class="material-symbols-outlined text-lg">schedule</span>
+                                Horario Aproximado *
+                            </span>
+                        </label>
+                        <select id="horarioEvento" name="horarioEvento" required
+                            class="w-full px-4 py-3 rounded-xl border-2 border-gray-200 dark:border-gray-700 bg-white dark:bg-[#14291a] text-[#0d1b11] dark:text-white focus:border-primary focus:outline-none transition-colors">
+                            <option value="">Selecciona un horario</option>
+                            <option value="mañana">Mañana (8:00 AM - 12:00 PM)</option>
+                            <option value="mediodia">Mediodía (12:00 PM - 3:00 PM)</option>
+                            <option value="tarde">Tarde (3:00 PM - 6:00 PM)</option>
+                            <option value="noche">Noche (6:00 PM - 10:00 PM)</option>
+                        </select>
+                    </div>
+
+                    <!-- Tipo de Evento -->
+                    <div>
+                        <label for="tipoEventoCelebracion"
+                            class="block text-sm font-semibold text-[#0d1b11] dark:text-white mb-2">
+                            <span class="flex items-center gap-2">
+                                <span class="material-symbols-outlined text-lg">event</span>
+                                Tipo de Evento *
+                            </span>
+                        </label>
+                        <select id="tipoEventoCelebracion" name="tipoEventoCelebracion" required
+                            class="w-full px-4 py-3 rounded-xl border-2 border-gray-200 dark:border-gray-700 bg-white dark:bg-[#14291a] text-[#0d1b11] dark:text-white focus:border-primary focus:outline-none transition-colors">
+                            <option value="">Selecciona el tipo de evento</option>
+                            <option value="cumpleaños">Cumpleaños</option>
+                            <option value="aniversario">Aniversario</option>
+                            <option value="corporativo">Evento Corporativo</option>
+                            <option value="reunion">Reunión Familiar</option>
+                            <option value="boda">Boda</option>
+                            <option value="otro">Otro</option>
+                        </select>
+                    </div>
+
+                    <!-- Número de Invitados -->
+                    <div>
+                        <label for="invitadosEvento"
+                            class="block text-sm font-semibold text-[#0d1b11] dark:text-white mb-2">
+                            <span class="flex items-center gap-2">
+                                <span class="material-symbols-outlined text-lg">groups</span>
+                                Número Aproximado de Invitados *
+                            </span>
+                        </label>
+                        <input type="number" id="invitadosEvento" name="invitadosEvento" min="1" required
+                            class="w-full px-4 py-3 rounded-xl border-2 border-gray-200 dark:border-gray-700 bg-white dark:bg-[#14291a] text-[#0d1b11] dark:text-white focus:border-primary focus:outline-none transition-colors"
+                            placeholder="Ej: 50">
+                    </div>
+
+                    <!-- Mensaje Adicional -->
+                    <div>
+                        <label for="mensajeEvento"
+                            class="block text-sm font-semibold text-[#0d1b11] dark:text-white mb-2">
+                            <span class="flex items-center gap-2">
+                                <span class="material-symbols-outlined text-lg">chat</span>
+                                Mensaje o Detalles Adicionales
+                            </span>
+                        </label>
+                        <textarea id="mensajeEvento" name="mensajeEvento" rows="4"
+                            class="w-full px-4 py-3 rounded-xl border-2 border-gray-200 dark:border-gray-700 bg-white dark:bg-[#14291a] text-[#0d1b11] dark:text-white focus:border-primary focus:outline-none transition-colors resize-none"
+                            placeholder="Cuéntanos más sobre tu evento..."></textarea>
+                    </div>
+
+                    <!-- Botones -->
+                    <div class="flex gap-4 pt-4">
+                        <button type="button" onclick="closeEventsModal()"
+                            class="flex-1 px-6 py-3 rounded-xl border-2 border-gray-300 dark:border-gray-600 text-[#0d1b11] dark:text-white font-semibold hover:bg-gray-50 dark:hover:bg-[#14291a] transition-colors">
+                            Cancelar
+                        </button>
+                        <button type="submit"
+                            class="flex-1 px-6 py-3 rounded-xl bg-primary hover:bg-primary/90 text-[#0d1b11] font-bold shadow-lg hover:shadow-xl transition-all hover:scale-[1.02] flex items-center justify-center gap-2">
+                            <span class="material-symbols-outlined">send</span>
+                            <span>Enviar Solicitud</span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <footer class="bg-gradient-to-b from-[#0d1b11] to-[#081410] text-white pt-16 pb-8 border-t border-primary/20">
+        <div class="max-w-[1280px] mx-auto px-4">
+
+            <!-- Main Footer Content -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+
+                <!-- Logo & Description -->
+                <div class="lg:col-span-1">
+                    <div class="logo-container mb-6">
+                        <img src="logo.png" alt="Mi Descanso" class="footer-logo">
+                        <span class="logo-text">Mi Descanso</span>
+                    </div>
+                    <p class="text-gray-400 text-sm leading-relaxed mb-6">
+                        Restaurante campestre donde la naturaleza y el buen sabor se encuentran. Disfruta de momentos
+                        únicos con tu familia.
+                    </p>
+                    <!-- Social Media -->
+                    <div class="flex gap-3">
+                        <a href="#"
+                            class="w-11 h-11 rounded-full bg-white/10 flex items-center justify-center hover:bg-primary hover:text-[#0d1b11] transition-all hover:scale-110 hover:shadow-lg hover:shadow-primary/50">
+                            <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
+                                <path
+                                    d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.791-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z">
+                                </path>
+                            </svg>
+                        </a>
+                        <a href="#"
+                            class="w-11 h-11 rounded-full bg-white/10 flex items-center justify-center hover:bg-primary hover:text-[#0d1b11] transition-all hover:scale-110 hover:shadow-lg hover:shadow-primary/50">
+                            <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
+                                <path
+                                    d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z">
+                                </path>
+                            </svg>
+                        </a>
+                        <a href="#"
+                            class="w-11 h-11 rounded-full bg-white/10 flex items-center justify-center hover:bg-primary hover:text-[#0d1b11] transition-all hover:scale-110 hover:shadow-lg hover:shadow-primary/50">
+                            <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
+                                <path
+                                    d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z">
+                                </path>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Enlaces Rápidos -->
+                <div>
+                    <h3 class="text-lg font-bold mb-6 text-primary">Enlaces Rápidos</h3>
+                    <ul class="space-y-3">
+                        <li>
+                            <a href="#"
+                                class="text-gray-400 hover:text-primary transition-colors flex items-center gap-2 group">
+                                <span
+                                    class="material-symbols-outlined text-sm group-hover:translate-x-1 transition-transform">chevron_right</span>
+                                Inicio
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#hospedaje"
+                                class="text-gray-400 hover:text-primary transition-colors flex items-center gap-2 group">
+                                <span
+                                    class="material-symbols-outlined text-sm group-hover:translate-x-1 transition-transform">chevron_right</span>
+                                Hospedaje
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#eventos"
+                                class="text-gray-400 hover:text-primary transition-colors flex items-center gap-2 group">
+                                <span
+                                    class="material-symbols-outlined text-sm group-hover:translate-x-1 transition-transform">chevron_right</span>
+                                Eventos
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#ubicacion"
+                                class="text-gray-400 hover:text-primary transition-colors flex items-center gap-2 group">
+                                <span
+                                    class="material-symbols-outlined text-sm group-hover:translate-x-1 transition-transform">chevron_right</span>
+                                Ubicación
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Horarios -->
+                <div>
+                    <h3 class="text-lg font-bold mb-6 text-primary">Horarios</h3>
+                    <ul class="space-y-3 text-sm">
+                        <li class="flex justify-between items-center">
+                            <span class="text-gray-400">Lunes - Viernes</span>
+                            <span class="text-white font-semibold">9:00 AM - 6:00 PM</span>
+                        </li>
+                        <li class="flex justify-between items-center">
+                            <span class="text-gray-400">Sábado - Domingo</span>
+                            <span class="text-white font-semibold">9:00 AM - 8:00 PM</span>
+                        </li>
+                        <li class="pt-4 border-t border-white/10">
+                            <div class="flex items-center gap-2 text-primary">
+                                <span class="material-symbols-outlined text-sm">schedule</span>
+                                <span class="font-semibold">Abierto todos los días</span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Contacto -->
+                <div>
+                    <h3 class="text-lg font-bold mb-6 text-primary">Contacto</h3>
+                    <ul class="space-y-4 text-sm">
+                        <li class="flex items-start gap-3">
+                            <span class="material-symbols-outlined text-primary mt-0.5">location_on</span>
+                            <div>
+                                <p class="text-white font-semibold mb-1">Dirección</p>
+                                <p class="text-gray-400">Club Campestre MI DESCANSO<br>Ate 15479, Lima</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="material-symbols-outlined text-primary mt-0.5">call</span>
+                            <div>
+                                <p class="text-white font-semibold mb-1">WhatsApp</p>
+                                <a href="https://wa.me/51987654321?text=Hola,%20me%20gustaría%20obtener%20más%20información%20sobre%20Mi%20Descanso"
+                                    target="_blank"
+                                    class="text-gray-400 hover:text-primary transition-colors flex items-center gap-2">
+                                    +51 987 654 321
+                                    <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
+                                        <path
+                                            d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z">
+                                        </path>
+                                    </svg>
+                                </a>
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="material-symbols-outlined text-primary mt-0.5">mail</span>
+                            <div>
+                                <p class="text-white font-semibold mb-1">Email</p>
+                                <a href="mailto:contacto@restaurantecampestre.com"
+                                    class="text-gray-400 hover:text-primary transition-colors">contacto@restaurantecampestre.com</a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Bottom Bar -->
+            <div class="pt-8 border-t border-white/10">
+                <p class="text-sm text-gray-400 text-center">
+                    © 2025 <span class="text-primary font-semibold">Mi Descanso</span> - Restaurante Campestre. Todos
+                    los derechos reservados.
+                </p>
+            </div>
+        </div>
+    </footer>
+    <!-- Social Media Floating Buttons -->
+    <div class="fixed bottom-6 right-6 z-50 flex flex-col gap-3">
+        <!-- WhatsApp -->
+        <a href="https://wa.me/51987654321?text=Hola,%20me%20gustaría%20obtener%20más%20información%20sobre%20Mi%20Descanso"
+            target="_blank"
+            class="flex items-center justify-center w-16 h-16 bg-[#25D366] text-white rounded-full shadow-[0_4px_20px_rgba(37,211,102,0.5)] hover:scale-110 transition-all cursor-pointer group">
+            <svg class="w-9 h-9 fill-current" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path
+                    d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z">
+                </path>
+            </svg>
+        </a>
+
+        <!-- Instagram -->
+        <a href="https://www.instagram.com/midecanso.huaycan" target="_blank"
+            class="flex items-center justify-center w-16 h-16 bg-gradient-to-br from-[#833AB4] via-[#FD1D1D] to-[#F77737] text-white rounded-full shadow-[0_4px_20px_rgba(253,29,29,0.5)] hover:scale-110 transition-all cursor-pointer group">
+            <svg class="w-9 h-9 fill-current" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path
+                    d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z">
+                </path>
+            </svg>
+        </a>
+
+        <!-- TikTok -->
+        <a href="https://www.tiktok.com/@midescanso.huaycan" target="_blank"
+            class="flex items-center justify-center w-16 h-16 bg-black text-white rounded-full shadow-[0_4px_20px_rgba(0,0,0,0.5)] hover:scale-110 transition-all cursor-pointer group">
+            <svg class="w-9 h-9 fill-current" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path
+                    d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z">
+                </path>
+            </svg>
+        </a>
+
+        <!-- Facebook -->
+        <a href="https://www.facebook.com/midescanso.huaycan" target="_blank"
+            class="flex items-center justify-center w-16 h-16 bg-[#1877F2] text-white rounded-full shadow-[0_4px_20px_rgba(24,119,242,0.5)] hover:scale-110 transition-all cursor-pointer group">
+            <svg class="w-9 h-9 fill-current" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path
+                    d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.791-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z">
+                </path>
+            </svg>
+        </a>
+    </div>
+
+    <script>
+        // Carousel functionality
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.carousel-slide');
+        const dots = document.querySelectorAll('.carousel-dot');
+        const totalSlides = slides.length;
+        let autoPlayInterval;
+
+        function showSlide(index) {
+            // Remove active class from all slides and dots
+            slides.forEach(slide => slide.classList.remove('active'));
+            dots.forEach(dot => dot.classList.remove('active'));
+
+            // Wrap around if necessary
+            if (index >= totalSlides) {
+                currentSlide = 0;
+            } else if (index < 0) {
+                currentSlide = totalSlides - 1;
+            } else {
+                currentSlide = index;
+            }
+
+            // Add active class to current slide and dot
+            slides[currentSlide].classList.add('active');
+            dots[currentSlide].classList.add('active');
+        }
+
+        function moveCarousel(direction) {
+            showSlide(currentSlide + direction);
+            resetAutoPlay();
+        }
+
+        function goToSlide(index) {
+            showSlide(index);
+            resetAutoPlay();
+        }
+
+        function resetAutoPlay() {
+            clearInterval(autoPlayInterval);
+            startAutoPlay();
+        }
+
+        function startAutoPlay() {
+            autoPlayInterval = setInterval(() => {
+                showSlide(currentSlide + 1);
+            }, 3000);
+        }
+
+        // Start autoplay when page loads
+        startAutoPlay();
+
+        // Pause autoplay when user hovers over carousel
+        const carouselContainer = document.querySelector('.carousel-container');
+        carouselContainer.addEventListener('mouseenter', () => {
+            clearInterval(autoPlayInterval);
+        });
+
+        carouselContainer.addEventListener('mouseleave', () => {
+            startAutoPlay();
+        });
+
+        // Menu Order System
+        let selectedItems = [];
+
+        function toggleMenuItem(button) {
+            const menuItem = button.closest('.menu-item');
+            const itemName = menuItem.dataset.name;
+            const itemPrice = menuItem.dataset.price;
+
+            // Check if item is already selected
+            const index = selectedItems.findIndex(item => item.name === itemName);
+
+            if (index > -1) {
+                // Remove from selection
+                selectedItems.splice(index, 1);
+                menuItem.classList.remove('ring-2', 'ring-primary', 'ring-offset-2');
+                button.classList.remove('bg-primary', 'text-[#0d1b11]');
+                button.classList.add('text-primary', 'border-primary');
+                button.textContent = 'Pedir';
+            } else {
+                // Add to selection
+                selectedItems.push({ name: itemName, price: itemPrice });
+                menuItem.classList.add('ring-2', 'ring-primary', 'ring-offset-2');
+                button.classList.add('bg-primary', 'text-[#0d1b11]');
+                button.classList.remove('text-primary');
+                button.textContent = '✓ Seleccionado';
+            }
+
+            // Update WhatsApp button animation
+            updateWhatsAppButton();
+        }
+
+        function updateWhatsAppButton() {
+            const whatsappBtn = document.getElementById('whatsappBtn');
+            if (selectedItems.length > 0) {
+                whatsappBtn.classList.add('scale-110');
+                setTimeout(() => {
+                    whatsappBtn.classList.remove('scale-110');
+                }, 300);
+            }
+        }
+
+        function sendOrderToWhatsApp() {
+            if (selectedItems.length === 0) {
+                alert('Por favor, selecciona al menos un plato del menú antes de hacer tu pedido.');
+                return;
+            }
+
+            // Format message for WhatsApp
+            let message = `🍽️ *PEDIDO - MI DESCANSO*%0A%0A`;
+            message += `*Platos seleccionados:*%0A`;
+
+            let total = 0;
+            selectedItems.forEach((item, index) => {
+                message += `${index + 1}. ${item.name} - S/ ${item.price}%0A`;
+                total += parseFloat(item.price);
+            });
+
+            message += `%0A💰 *Total:* S/ ${total.toFixed(2)}%0A%0A`;
+            message += `¡Gracias por tu preferencia! 🌿`;
+
+            // Replace with your actual WhatsApp number (include country code, no + or spaces)
+            const whatsappNumber = '51999999999'; // Change this to your number
+            const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${message}`;
+
+            // Open WhatsApp
+            window.open(whatsappUrl, '_blank');
+        }
+
+        // Menu Modal Functions
+        function openMenuModal() {
+            const modal = document.getElementById('menuModal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeMenuModal() {
+            const modal = document.getElementById('menuModal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Close modal when clicking outside
+        document.getElementById('menuModal').addEventListener('click', function (e) {
+            if (e.target === this) {
+                closeMenuModal();
+            }
+        });
+
+        // Close modal with Escape key
+        document.addEventListener('keydown', function (e) {
+            if (e.key === 'Escape') {
+                closeMenuModal();
+                closeEventModal();
+            }
+        });
+
+        // Event Modal Functions
+        function openEventModal() {
+            const modal = document.getElementById('eventModal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            document.body.style.overflow = 'hidden';
+
+            // Set minimum date to tomorrow
+            const tomorrow = new Date();
+            tomorrow.setDate(tomorrow.getDate() + 1);
+            const minDate = tomorrow.toISOString().split('T')[0];
+            document.getElementById('fecha').setAttribute('min', minDate);
+        }
+
+        function closeEventModal() {
+            const modal = document.getElementById('eventModal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Close modal when clicking outside
+        document.getElementById('eventModal').addEventListener('click', function (e) {
+            if (e.target === this) {
+                closeEventModal();
+            }
+        });
+
+        // Handle form submission
+        function handleEventSubmit(e) {
+            e.preventDefault();
+
+            const formData = new FormData(e.target);
+            const data = {};
+            formData.forEach((value, key) => {
+                data[key] = value;
+            });
+
+            // Format message for WhatsApp
+            let message = `🎉 *SOLICITUD DE EVENTO*%0A%0A`;
+            message += `👤 *Nombre:* ${data.nombre}%0A`;
+            message += `📱 *Teléfono:* ${data.telefono}%0A`;
+            message += `📅 *Fecha:* ${data.fecha}%0A`;
+            message += `⏰ *Horario:* ${data.horario}%0A`;
+            message += `🎊 *Tipo de Evento:* ${data.tipoEvento}%0A`;
+
+            if (data.invitados) {
+                message += `👥 *Invitados:* ${data.invitados} personas%0A`;
+            }
+
+            if (data.mensaje) {
+                message += `%0A💬 *Mensaje:*%0A${data.mensaje}`;
+            }
+
+            // Replace with your actual WhatsApp number (include country code, no + or spaces)
+            const whatsappNumber = '51999999999'; // Change this to your number
+            const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${message}`;
+
+            // Open WhatsApp
+            window.open(whatsappUrl, '_blank');
+
+            // Close modal and reset form
+            closeEventModal();
+            e.target.reset();
+
+            // Show success message (optional)
+            alert('¡Solicitud enviada! Te redirigimos a WhatsApp para confirmar.');
+        }
+
+        // Events Modal Functions (Separate from Room Booking)
+        function openEventsModal() {
+            const modal = document.getElementById('eventsModal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            document.body.style.overflow = 'hidden';
+
+            // Set minimum date to tomorrow
+            const tomorrow = new Date();
+            tomorrow.setDate(tomorrow.getDate() + 1);
+            const minDate = tomorrow.toISOString().split('T')[0];
+            document.getElementById('fechaEvento').setAttribute('min', minDate);
+        }
+
+        function closeEventsModal() {
+            const modal = document.getElementById('eventsModal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Close events modal when clicking outside
+        document.getElementById('eventsModal').addEventListener('click', function (e) {
+            if (e.target === this) {
+                closeEventsModal();
+            }
+        });
+
+        // Handle events form submission
+        function handleEventsSubmit(e) {
+            e.preventDefault();
+
+            const formData = new FormData(e.target);
+            const data = {};
+            formData.forEach((value, key) => {
+                data[key] = value;
+            });
+
+            // Format message for WhatsApp
+            let message = `🎉 *SOLICITUD DE EVENTO*%0A%0A`;
+            message += `👤 *Nombre:* ${data.nombreEvento}%0A`;
+            message += `📱 *Teléfono:* ${data.telefonoEvento}%0A`;
+            message += `📅 *Fecha:* ${data.fechaEvento}%0A`;
+            message += `⏰ *Horario:* ${data.horarioEvento}%0A`;
+            message += `🎊 *Tipo de Evento:* ${data.tipoEventoCelebracion}%0A`;
+            message += `👥 *Invitados:* ${data.invitadosEvento} personas%0A`;
+
+            if (data.mensajeEvento) {
+                message += `%0A💬 *Mensaje:*%0A${data.mensajeEvento}`;
+            }
+
+            // Replace with your actual WhatsApp number (include country code, no + or spaces)
+            const whatsappNumber = '51999999999'; // Change this number
+            const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${message}`;
+
+            // Open WhatsApp
+            window.open(whatsappUrl, '_blank');
+
+            // Close modal and reset form
+            closeEventsModal();
+            e.target.reset();
+
+            // Show success message (optional)
+            alert('¡Solicitud enviada! Te redirigimos a WhatsApp para confirmar.');
+        }
+
+        // Update Escape key handler to close both modals
+        document.addEventListener('keydown', function (e) {
+            if (e.key === 'Escape') {
+                closeMenuModal();
+                closeEventModal();
+                closeEventsModal();
+            }
+        });
+    </script>
+
+</body>
+
+</html>

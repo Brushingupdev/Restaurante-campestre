@@ -1,0 +1,243 @@
+<!-- Este contenido debe insertarse antes de </body> --
+
+<!-- Room Booking Modal -->
+<div id="roomModal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/80 backdrop-blur-sm p-4">
+    <div class="relative bg-white dark:bg-[#1a3322] rounded-3xl max-w-2xl w-full max-h-[90vh] overflow-y-auto shadow-2xl">
+        <!-- Modal Header -->
+        <div class="sticky top-0 bg-gradient-to-r from-primary to-primary/80 px-8 py-6 flex items-center justify-between border-b border-white/10 z-10 rounded-t-3xl">
+            <div class="flex items-center gap-3">
+                <span class="material-symbols-outlined text-3xl text-[#0d1b11]">hotel</span>
+                <div>
+                    <h2 class="text-2xl font-bold text-[#0d1b11]">Reserva tu Habitación</h2>
+                    <p class="text-[#0d1b11]/80 text-sm mt-1">Completa tus datos y nos contactaremos contigo</p>
+                </div>
+            </div>
+            <button onclick="closeRoomModal()"
+                class="w-10 h-10 rounded-full bg-[#0d1b11]/20 hover:bg-[#0d1b11]/30 flex items-center justify-center transition-colors">
+                <span class="material-symbols-outlined text-[#0d1b11]">close</span>
+            </button>
+        </div>
+
+        <!-- Modal Content -->
+        <div class="px-8 py-6">
+            <form id="roomForm" onsubmit="handleRoomSubmit(event)" class="space-y-5">
+                
+                <!-- Nombre Completo -->
+                <div>
+                    <label for="nombreRoom" class="block text-sm font-semibold text-[#0d1b11] dark:text-white mb-2">
+                        <span class="flex items-center gap-2">
+                            <span class="material-symbols-outlined text-lg">person</span>
+                            Nombre Completo *
+                        </span>
+                    </label>
+                    <input type="text" id="nombreRoom" name="nombreRoom" required
+                        class="w-full px-4 py-3 rounded-xl border-2 border-gray-200 dark:border-gray-700 bg-white dark:bg-[#14291a] text-[#0d1b11] dark:text-white focus:border-primary focus:outline-none transition-colors"
+                        placeholder="Ej: Juan Pérez">
+                </div>
+
+                <!-- Grid de 2 columnas para teléfono y email -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <!-- Teléfono -->
+                    <div>
+                        <label for="telefonoRoom" class="block text-sm font-semibold text-[#0d1b11] dark:text-white mb-2">
+                            <span class="flex items-center gap-2">
+                                <span class="material-symbols-outlined text-lg">phone</span>
+                                Teléfono *
+                            </span>
+                        </label>
+                        <input type="text" id="telefonoRoom" name="telefonoRoom" required
+                            pattern="[0-9]{9}" 
+                            maxlength="9"
+                            inputmode="numeric"
+                            oninput="this.value = this.value.replace(/[^0-9]/g, '')"
+                            class="w-full px-4 py-3 rounded-xl border-2 border-gray-200 dark:border-gray-700 bg-white dark:bg-[#14291a] text-[#0d1b11] dark:text-white focus:border-primary focus:outline-none transition-colors"
+                            placeholder="987654321">
+                    </div>
+
+                    <!-- Email -->
+                    <div>
+                        <label for="emailRoom" class="block text-sm font-semibold text-[#0d1b11] dark:text-white mb-2">
+                            <span class="flex items-center gap-2">
+                                <span class="material-symbols-outlined text-lg">email</span>
+                                Email
+                            </span>
+                        </label>
+                        <input type="email" id="emailRoom" name="emailRoom"
+                            class="w-full px-4 py-3 rounded-xl border-2 border-gray-200 dark:border-gray-700 bg-white dark:bg-[#14291a] text-[#0d1b11] dark:text-white focus:border-primary focus:outline-none transition-colors"
+                            placeholder="correo@ejemplo.com">
+                    </div>
+                </div>
+
+                <!-- Tipo de Habitación -->
+                <div>
+                    <label for="tipoHabitacion" class="block text-sm font-semibold text-[#0d1b11] dark:text-white mb-2">
+                        <span class="flex items-center gap-2">
+                            <span class="material-symbols-outlined text-lg">bed</span>
+                            Tipo de Habitación *
+                        </span>
+                    </label>
+                    <select id="tipoHabitacion" name="tipoHabitacion" required
+                        class="w-full px-4 py-3 rounded-xl border-2 border-gray-200 dark:border-gray-700 bg-white dark:bg-[#14291a] text-[#0d1b11] dark:text-white focus:border-primary focus:outline-none transition-colors">
+                        <option value="">Selecciona una habitación</option>
+                        <option value="simple">Habitación Simple - S/ 80/noche</option>
+                        <option value="doble">Habitación Doble - S/ 120/noche</option>
+                        <option value="familiar">Habitación Familiar - S/ 180/noche</option>
+                    </select>
+                </div>
+
+                <!-- Grid de 2 columnas para fechas -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <!-- Fecha Check-in -->
+                    <div>
+                        <label for="fechaRoom" class="block text-sm font-semibold text-[#0d1b11] dark:text-white mb-2">
+                            <span class="flex items-center gap-2">
+                                <span class="material-symbols-outlined text-lg">event</span>
+                                Fecha Check-in *
+                            </span>
+                        </label>
+                        <input type="date" id="fechaRoom" name="fechaRoom" required
+                            class="w-full px-4 py-3 rounded-xl border-2 border-gray-200 dark:border-gray-700 bg-white dark:bg-[#14291a] text-[#0d1b11] dark:text-white focus:border-primary focus:outline-none transition-colors">
+                    </div>
+
+                    <!-- Fecha Check-out -->
+                    <div>
+                        <label for="fechaSalidaRoom" class="block text-sm font-semibold text-[#0d1b11] dark:text-white mb-2">
+                            <span class="flex items-center gap-2">
+                                <span class="material-symbols-outlined text-lg">event_available</span>
+                                Fecha Check-out *
+                            </span>
+                        </label>
+                        <input type="date" id="fechaSalidaRoom" name="fechaSalidaRoom" required
+                            class="w-full px-4 py-3 rounded-xl border-2 border-gray-200 dark:border-gray-700 bg-white dark:bg-[#14291a] text-[#0d1b11] dark:text-white focus:border-primary focus:outline-none transition-colors">
+                    </div>
+                </div>
+
+                <!-- Número de Personas -->
+                <div>
+                    <label for="personasRoom" class="block text-sm font-semibold text-[#0d1b11] dark:text-white mb-2">
+                        <span class="flex items-center gap-2">
+                            <span class="material-symbols-outlined text-lg">groups</span>
+                            Número de Personas *
+                        </span>
+                    </label>
+                    <input type="number" id="personasRoom" name="personasRoom" min="1" max="10" required
+                        class="w-full px-4 py-3 rounded-xl border-2 border-gray-200 dark:border-gray-700 bg-white dark:bg-[#14291a] text-[#0d1b11] dark:text-white focus:border-primary focus:outline-none transition-colors"
+                        placeholder="Ej: 2">
+                </div>
+
+                <!-- Comentarios Adicionales -->
+                <div>
+                    <label for="mensajeRoom" class="block text-sm font-semibold text-[#0d1b11] dark:text-white mb-2">
+                        <span class="flex items-center gap-2">
+                            <span class="material-symbols-outlined text-lg">chat</span>
+                            Comentarios Adicionales
+                        </span>
+                    </label>
+                    <textarea id="mensajeRoom" name="mensajeRoom" rows="3"
+                        class="w-full px-4 py-3 rounded-xl border-2 border-gray-200 dark:border-gray-700 bg-white dark:bg-[#14291a] text-[#0d1b11] dark:text-white focus:border-primary focus:outline-none transition-colors resize-none"
+                        placeholder="Necesidades especiales, preferencias..."></textarea>
+                </div>
+
+                <!-- Botones -->
+                <div class="flex gap-4 pt-4">
+                    <button type="button" onclick="closeRoomModal()"
+                        class="flex-1 px-6 py-3 rounded-xl border-2 border-gray-300 dark:border-gray-600 text-[#0d1b11] dark:text-white font-semibold hover:bg-gray-50 dark:hover:bg-[#14291a] transition-colors">
+                        Cancelar
+                    </button>
+                    <button type="submit"
+                        class="flex-1 px-6 py-3 rounded-xl bg-primary hover:bg-primary/90 text-[#0d1b11] font-bold shadow-lg hover:shadow-xl transition-all hover:scale-[1.02] flex items-center justify-center gap-2">
+                        <span class="material-symbols-outlined">hotel_class</span>
+                        <span>Enviar Reserva</span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Room Booking Modal Functions
+    let selectedRoomType = '';
+
+    function openRoomModal(roomType = '') {
+        selectedRoomType = roomType;
+        const modal = document.getElementById('roomModal');
+        modal.classList.remove('hidden');
+        modal.classList.add('flex');
+        document.body.style.overflow = 'hidden';
+        
+        // Set minimum date to tomorrow
+        const tomorrow = new Date();
+        tomorrow.setDate(tomorrow.getDate() + 1);
+        const minDate = tomorrow.toISOString().split('T')[0];
+        document.getElementById('fechaRoom').setAttribute('min', minDate);
+        
+        // Pre-select room type if provided
+        if (roomType) {
+            const roomTypeSelect = document.getElementById('tipoHabitacion');
+            roomTypeSelect.value = roomType;
+        }
+    }
+
+    function closeRoomModal() {
+        const modal = document.getElementById('roomModal');
+        modal.classList.add('hidden');
+        modal.classList.remove('flex');
+        document.body.style.overflow = 'auto';
+    }
+
+    // Close modal when clicking outside
+    if (document.getElementById('roomModal')) {
+        document.getElementById('roomModal').addEventListener('click', function (e) {
+            if (e.target === this) {
+                closeRoomModal();
+            }
+        });
+    }
+
+    // Handle room booking form submission
+    function handleRoomSubmit(e) {
+        e.preventDefault();
+        
+        const formData = new FormData(e.target);
+        const data = {};
+        formData.forEach((value, key) => {
+            data[key] = value;
+        });
+
+        // Room type labels
+        const roomTypes = {
+            'simple': 'Habitación Simple',
+            'doble': 'Habitación Doble',
+            'familiar': 'Habitación Familiar'
+        };
+
+        // Format message for WhatsApp
+        let message = `🏨 *RESERVA DE HABITACIÓN*%0A%0A`;
+        message += `👤 *Nombre:* ${data.nombreRoom}%0A`;
+        message += `📱 *Teléfono:* ${data.telefonoRoom}%0A`;
+        message += `📧 *Email:* ${data.emailRoom}%0A`;
+        message += `🏠 *Habitación:* ${roomTypes[data.tipoHabitacion] || data.tipoHabitacion}%0A`;
+        message += `📅 *Check-in:* ${data.fechaRoom}%0A`;
+        message += `📅 *Check-out:* ${data.fechaSalidaRoom}%0A`;
+        message += `👥 *Personas:* ${data.personasRoom}%0A`;
+        
+        if (data.mensajeRoom) {
+            message += `%0A💬 *Comentarios:*%0A${data.mensajeRoom}`;
+        }
+
+        // Replace with your actual WhatsApp number
+        const whatsappNumber = '51999999999';
+        const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${message}`;
+        
+        // Open WhatsApp
+        window.open(whatsappUrl, '_blank');
+        
+        // Close modal and reset form
+        closeRoomModal();
+        e.target.reset();
+        
+        // Show success message
+        alert('¡Reserva enviada! Te redirigimos a WhatsApp para confirmar.');
+    }
+</script>
