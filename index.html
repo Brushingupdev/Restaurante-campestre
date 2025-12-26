@@ -413,7 +413,7 @@
             }
 
             .carousel-controls {
-                bottom: 1rem;
+                display: none;
             }
 
             .carousel-caption {
@@ -433,7 +433,7 @@
             }
         }
 
-        
+        /* Mobile Menu Styles */
         .mobile-menu {
             position: fixed;
             top: 0;
@@ -514,7 +514,7 @@
             transform: translateX(4px);
         }
 
-       
+
         @media (max-width: 640px) {
             h1 {
                 font-size: 2rem !important;
@@ -534,12 +534,12 @@
             }
         }
 
-        
+
         body {
             overflow-x: hidden;
         }
 
-       
+
         @media (max-width: 768px) {
 
             button,
@@ -548,7 +548,7 @@
             }
         }
 
-        
+
         .overflow-y-auto::-webkit-scrollbar {
             width: 8px;
         }
@@ -567,25 +567,25 @@
             background: #2a3d1f;
         }
 
-        
+
         @media (max-width: 640px) {
             .grid {
                 gap: 1rem !important;
             }
 
-            
+
             section {
                 padding-left: 1rem !important;
                 padding-right: 1rem !important;
             }
 
-            
+
             .rounded-2xl,
             .rounded-3xl {
                 border-radius: 1rem !important;
             }
 
-           
+
             .px-8 {
                 padding-left: 1.5rem !important;
                 padding-right: 1.5rem !important;
@@ -596,7 +596,7 @@
                 padding-bottom: 0.75rem !important;
             }
 
-            
+
             .h-56,
             .h-64,
             .h-72,
@@ -605,7 +605,7 @@
             }
         }
 
-       
+
         @media (min-width: 641px) and (max-width: 1024px) {
             .max-w-\[1280px\] {
                 padding-left: 2rem;
@@ -613,19 +613,190 @@
             }
         }
 
-       
+
         html {
             scroll-padding-top: 80px;
         }
 
-        
+
         @media (max-width: 640px) {
 
             input,
             select,
             textarea {
                 font-size: 16px !important;
-               
+            }
+        }
+
+
+        @media (max-width: 768px) {
+            .fixed.bottom-6.right-6 {
+                bottom: 1rem;
+                right: 1rem;
+                gap: 0.5rem;
+            }
+
+            .fixed.bottom-6.right-6 a {
+                width: 3rem !important;
+                height: 3rem !important;
+            }
+
+            .fixed.bottom-6.right-6 a svg {
+                width: 1.5rem !important;
+                height: 1.5rem !important;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .fixed.bottom-6.right-6 {
+                bottom: 0.75rem;
+                right: 0.75rem;
+                gap: 0.375rem;
+            }
+
+            .fixed.bottom-6.right-6 a {
+                width: 2.75rem !important;
+                height: 2.75rem !important;
+            }
+
+            .fixed.bottom-6.right-6 a svg {
+                width: 1.375rem !important;
+                height: 1.375rem !important;
+            }
+        }
+
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(100px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes bounce {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-8px);
+            }
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.05);
+            }
+        }
+
+        @keyframes rotate {
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+
+        .fixed.bottom-6.right-6 a {
+            animation: slideInRight 0.6s ease-out backwards;
+            position: relative;
+            overflow: visible;
+        }
+
+
+        .fixed.bottom-6.right-6 a:nth-child(1) {
+            animation-delay: 0.1s;
+        }
+
+        .fixed.bottom-6.right-6 a:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .fixed.bottom-6.right-6 a:nth-child(3) {
+            animation-delay: 0.3s;
+        }
+
+        .fixed.bottom-6.right-6 a:nth-child(4) {
+            animation-delay: 0.4s;
+        }
+
+
+        .fixed.bottom-6.right-6 a:hover {
+            animation: bounce 0.6s ease-in-out;
+        }
+
+        .fixed.bottom-6.right-6 a:hover svg {
+            animation: rotate 0.6s ease-in-out;
+        }
+
+        .fixed.bottom-6.right-6 a:nth-child(1) {
+            animation: slideInRight 0.6s ease-out 0.1s backwards, pulse 3s ease-in-out 1s infinite;
+        }
+
+
+        .fixed.bottom-6.right-6 a::before {
+            content: '';
+            position: absolute;
+            inset: -4px;
+            border-radius: 50%;
+            background: inherit;
+            opacity: 0;
+            filter: blur(10px);
+            transition: opacity 0.3s ease;
+            z-index: -1;
+        }
+
+        .fixed.bottom-6.right-6 a:hover::before {
+            opacity: 0.6;
+        }
+
+
+        .fixed.bottom-6.right-6 a:active {
+            transform: scale(0.9);
+            transition: transform 0.1s ease;
+        }
+
+        @media (max-width: 768px) {
+            .fixed.bottom-6.right-6 a:hover {
+                animation: none;
+            }
+
+            .fixed.bottom-6.right-6 a:active {
+                transform: scale(0.92);
+                transition: transform 0.15s ease;
+            }
+
+
+            .fixed.bottom-6.right-6 a:nth-child(1) {
+                animation: slideInRight 0.5s ease-out 0.1s backwards;
+            }
+
+            .fixed.bottom-6.right-6 a:nth-child(2) {
+                animation: slideInRight 0.5s ease-out 0.2s backwards;
+            }
+
+            .fixed.bottom-6.right-6 a:nth-child(3) {
+                animation: slideInRight 0.5s ease-out 0.3s backwards;
+            }
+
+            .fixed.bottom-6.right-6 a:nth-child(4) {
+                animation: slideInRight 0.5s ease-out 0.4s backwards;
             }
         }
     </style>
@@ -651,12 +822,54 @@
                     <span class="material-symbols-outlined text-[20px]">event_available</span>
                     <span>Reserva Aquí</span>
                 </a>
-                <button class="md:hidden text-[#0d1b11] dark:text-white">
+                <button id="mobile-menu-btn"
+                    class="md:hidden text-[#0d1b11] dark:text-white p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg transition-colors">
                     <span class="material-symbols-outlined text-3xl">menu</span>
                 </button>
             </div>
         </div>
     </nav>
+
+
+    <div id="mobile-menu-overlay" class="mobile-menu-overlay"></div>
+
+
+    <div id="mobile-menu" class="mobile-menu">
+        <div class="mobile-menu-header">
+            <span class="text-xl font-bold text-[#0d1b11] dark:text-white">Menú</span>
+            <button id="mobile-menu-close"
+                class="p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg transition-colors">
+                <span class="material-symbols-outlined text-2xl text-[#0d1b11] dark:text-white">close</span>
+            </button>
+        </div>
+        <nav class="mobile-menu-links">
+            <a href="#inicio" class="mobile-menu-link">
+                <span class="material-symbols-outlined text-xl">home</span>
+                <span>Inicio</span>
+            </a>
+            <a href="#menu" class="mobile-menu-link">
+                <span class="material-symbols-outlined text-xl">restaurant</span>
+                <span>Restaurante</span>
+            </a>
+            <a href="#hospedaje" class="mobile-menu-link">
+                <span class="material-symbols-outlined text-xl">hotel</span>
+                <span>Hospedaje</span>
+            </a>
+            <a href="#eventos" class="mobile-menu-link">
+                <span class="material-symbols-outlined text-xl">celebration</span>
+                <span>Eventos</span>
+            </a>
+            <a href="#ubicacion" class="mobile-menu-link">
+                <span class="material-symbols-outlined text-xl">location_on</span>
+                <span>Ubicación</span>
+            </a>
+            <a href="#hospedaje" class="mobile-menu-link bg-primary/10 border-2 border-primary mt-4">
+                <span class="material-symbols-outlined text-xl text-primary">event_available</span>
+                <span class="text-primary font-bold">Reserva Aquí</span>
+            </a>
+        </nav>
+    </div>
+
     <header class="carousel-container" id="inicio">
 
         <div class="carousel-slide active">
@@ -1190,7 +1403,6 @@
                 </p>
 
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    <!-- Desayuno -->
                     <div
                         class="group relative overflow-hidden rounded-2xl h-72 shadow-lg hover:shadow-2xl transition-all duration-500 cursor-pointer hover:-translate-y-2">
                         <img src="restaurante.jpg" alt="Desayuno campestre incluido"
@@ -1208,7 +1420,6 @@
                         </div>
                     </div>
 
-                    <!-- Piscina -->
                     <div
                         class="group relative overflow-hidden rounded-2xl h-72 shadow-lg hover:shadow-2xl transition-all duration-500 cursor-pointer hover:-translate-y-2">
                         <img src="piscina-aerea.jpg" alt="Piscina con acceso ilimitado"
@@ -1226,7 +1437,6 @@
                         </div>
                     </div>
 
-                    <!-- Recreación -->
                     <div
                         class="group relative overflow-hidden rounded-2xl h-72 shadow-lg hover:shadow-2xl transition-all duration-500 cursor-pointer hover:-translate-y-2">
                         <img src="juegos-acuaticos.jpg" alt="Áreas de recreación y naturaleza"
@@ -1246,7 +1456,7 @@
                 </div>
             </div>
 
-           
+
             <div class="bg-gradient-to-r from-[#0d1b11] to-[#14291a] rounded-3xl p-8 md:p-12 text-center shadow-2xl">
                 <h3 class="text-3xl md:text-4xl font-bold text-white mb-4">
                     ¿Listo para tu Escapada Campestre?
@@ -1271,7 +1481,6 @@
     <section class="py-16 md:py-24 bg-background-light dark:bg-background-dark overflow-hidden" id="eventos">
         <div class="max-w-[1280px] mx-auto px-4">
 
-           
             <div class="text-center mb-12">
                 <div
                     class="inline-flex items-center justify-center px-4 py-1.5 rounded-full bg-primary/20 text-primary font-bold text-xs uppercase tracking-wider mb-4">
@@ -1285,10 +1494,10 @@
                 </p>
             </div>
 
-            
+
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
 
-                <!-- Event Card 1 -->
+
                 <div
                     class="group relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500">
                     <img src="https://images.unsplash.com/photo-1514320291840-2e0a9bf2a9ae?w=800&q=80"
@@ -1318,7 +1527,7 @@
                     </div>
                 </div>
 
-                <!-- Event Card 2 -->
+
                 <div
                     class="group relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500">
                     <img src="evento-familiar.jpg" alt="Show folclórico"
@@ -1349,10 +1558,10 @@
 
             </div>
 
-           
+
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
 
-                <!-- Música en Vivo -->
+
                 <div
                     class="group relative overflow-hidden rounded-2xl h-64 shadow-lg hover:shadow-2xl transition-all duration-500 cursor-pointer hover:-translate-y-2">
                     <img src="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=600&q=80"
@@ -1370,7 +1579,7 @@
                     </div>
                 </div>
 
-                <!-- Eventos Privados -->
+
                 <div
                     class="group relative overflow-hidden rounded-2xl h-64 shadow-lg hover:shadow-2xl transition-all duration-500 cursor-pointer hover:-translate-y-2">
                     <img src="https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?w=600&q=80"
@@ -1388,7 +1597,7 @@
                     </div>
                 </div>
 
-                <!-- Para Grupos -->
+
                 <div
                     class="group relative overflow-hidden rounded-2xl h-64 shadow-lg hover:shadow-2xl transition-all duration-500 cursor-pointer hover:-translate-y-2">
                     <img src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?w=600&q=80"
@@ -1406,7 +1615,7 @@
                     </div>
                 </div>
 
-                <!-- Catering Incluido -->
+
                 <div
                     class="group relative overflow-hidden rounded-2xl h-64 shadow-lg hover:shadow-2xl transition-all duration-500 cursor-pointer hover:-translate-y-2">
                     <img src="https://images.unsplash.com/photo-1555244162-803834f70033?w=600&q=80"
@@ -1426,7 +1635,7 @@
 
             </div>
 
-            <!-- CTA Banner -->
+
             <div class="bg-gradient-to-r from-[#0d1b11] to-[#14291a] rounded-3xl p-8 md:p-12 text-center shadow-2xl">
                 <h3 class="text-3xl md:text-4xl font-bold text-white mb-4">
                     ¿Quieres Organizar tu Evento?
@@ -1449,7 +1658,7 @@
     <section
         class="py-20 bg-gradient-to-br from-white via-[#f8fdf9] to-[#e7f3ea] dark:bg-gradient-to-br dark:from-[#14291a] dark:via-[#102215] dark:to-[#0d1b11]">
         <div class="max-w-[1280px] mx-auto px-4">
-            
+
             <div class="text-center mb-12">
                 <div
                     class="inline-flex items-center justify-center px-4 py-1.5 rounded-full bg-primary/20 text-primary font-bold text-xs uppercase tracking-wider mb-4">
@@ -1462,10 +1671,10 @@
                 </p>
             </div>
 
-            <
+
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
 
-                
+
                 <div
                     class="md:col-span-2 md:row-span-2 rounded-3xl overflow-hidden relative group shadow-2xl hover:shadow-3xl transition-all duration-500 hover:-translate-y-1">
                     <img class="w-full h-full min-h-[600px] object-cover transition-transform duration-700 group-hover:scale-105"
@@ -1502,7 +1711,7 @@
                     </div>
                 </div>
 
-                <!-- Piscina -->
+
                 <div
                     class="rounded-3xl overflow-hidden relative group shadow-xl hover:shadow-2xl transition-all duration-500 hover:-translate-y-1">
                     <img class="w-full h-[290px] object-cover transition-transform duration-700 group-hover:scale-110"
@@ -1521,7 +1730,7 @@
                     </div>
                 </div>
 
-               
+
                 <div
                     class="rounded-3xl overflow-hidden relative group shadow-xl hover:shadow-2xl transition-all duration-500 hover:-translate-y-1">
                     <img class="w-full h-[290px] object-cover transition-transform duration-700 group-hover:scale-110"
@@ -1539,7 +1748,7 @@
                     </div>
                 </div>
 
-                <!-- Restaurante -->
+
                 <div
                     class="md:col-span-3 rounded-3xl overflow-hidden relative group shadow-xl hover:shadow-2xl transition-all duration-500 hover:-translate-y-1">
                     <img class="w-full h-[320px] object-cover transition-transform duration-700 group-hover:scale-105"
@@ -1606,7 +1815,7 @@
         id="ubicacion">
         <div class="max-w-[1280px] mx-auto px-4">
 
-            
+
             <div class="text-center mb-12">
                 <div
                     class="inline-flex items-center justify-center px-4 py-1.5 rounded-full bg-primary/20 text-primary font-bold text-xs uppercase tracking-wider mb-4">
@@ -1621,13 +1830,13 @@
             <div
                 class="grid grid-cols-1 lg:grid-cols-2 gap-8 rounded-3xl overflow-hidden bg-white dark:bg-[#1a3322] shadow-2xl">
 
-                
+
                 <div class="p-8 md:p-12 flex flex-col justify-center">
 
-                    
+
                     <div class="space-y-6 mb-8">
 
-                      
+
                         <div
                             class="group flex gap-4 p-6 rounded-2xl bg-gradient-to-br from-primary/5 to-transparent hover:from-primary/10 transition-all duration-300 border border-gray-100 dark:border-white/5">
                             <div class="flex-shrink-0">
@@ -1645,7 +1854,7 @@
                             </div>
                         </div>
 
-                       
+
                         <div
                             class="group flex gap-4 p-6 rounded-2xl bg-gradient-to-br from-primary/5 to-transparent hover:from-primary/10 transition-all duration-300 border border-gray-100 dark:border-white/5">
                             <div class="flex-shrink-0">
@@ -1662,7 +1871,7 @@
                             </div>
                         </div>
 
-                       
+
                         <div
                             class="group flex gap-4 p-6 rounded-2xl bg-gradient-to-br from-primary/5 to-transparent hover:from-primary/10 transition-all duration-300 border border-gray-100 dark:border-white/5">
                             <div class="flex-shrink-0">
@@ -1679,7 +1888,7 @@
                         </div>
                     </div>
 
-                    
+
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                         <a href="https://waze.com/ul?ll=-12.0058346,-76.8315147&navigate=yes" target="_blank"
                             class="flex items-center justify-center gap-2 px-6 py-4 rounded-xl bg-primary hover:bg-primary/90 text-[#0d1b11] font-bold shadow-lg hover:shadow-xl transition-all hover:scale-105">
@@ -1695,7 +1904,7 @@
                     </div>
                 </div>
 
-                
+
                 <div class="relative h-[500px] lg:h-auto bg-gray-200 overflow-hidden rounded-r-3xl">
                     <iframe
                         src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d344.93965649487944!2d-76.83151470731666!3d-12.0058346241702!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9105c3a15f06a5f1%3A0xd1ff9df57d3e537e!2sClub%20campestre%20MI%20DESCANSO!5e0!3m2!1ses-419!2spe!4v1766538257842!5m2!1ses-419!2spe"
@@ -1708,27 +1917,26 @@
         </div>
     </section>
 
-    
-   
+
     <div id="menuModal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/80 backdrop-blur-sm p-3">
         <div class="relative bg-[#fdfdf9] rounded-lg max-w-7xl w-full h-[96vh] overflow-hidden shadow-[0_20px_60px_rgba(0,0,0,0.6)] border-[6px] border-[#3a4d2f]"
             style="background: linear-gradient(135deg, #fdfdf9 0%, #f8f6f0 50%, #f5f3e8 100%);">
 
-            
+
             <div class="absolute top-0 left-0 w-24 h-24 border-t-4 border-l-4 border-[#3a4d2f]/50"></div>
             <div class="absolute top-0 right-0 w-24 h-24 border-t-4 border-r-4 border-[#3a4d2f]/50"></div>
             <div class="absolute bottom-0 left-0 w-24 h-24 border-b-4 border-l-4 border-[#3a4d2f]/50"></div>
             <div class="absolute bottom-0 right-0 w-24 h-24 border-b-4 border-r-4 border-[#3a4d2f]/50"></div>
 
-           
+
             <button onclick="closeMenuModal()"
                 class="absolute top-4 right-4 z-50 w-10 h-10 rounded-full bg-[#3a4d2f]/80 hover:bg-[#3a4d2f] flex items-center justify-center transition-colors shadow-lg">
                 <span class="material-symbols-outlined text-white text-xl">close</span>
             </button>
 
-            
+
             <div class="h-full flex flex-col px-6 py-4">
-                
+
                 <div class="text-center mb-3">
                     <div class="flex items-center justify-center gap-3 mb-2">
                         <div class="h-px w-16 bg-gradient-to-r from-transparent to-[#4a5d3f]"></div>
@@ -1745,10 +1953,11 @@
                     </div>
                 </div>
 
-                
-                <div class="grid grid-cols-1 lg:grid-cols-3 gap-4 max-w-6xl mx-auto flex-1">
 
-                    <!-- Column 1: Platos Fuertes -->
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-4 max-w-6xl mx-auto flex-1 overflow-y-auto pr-2"
+                    style="scrollbar-width: thin; scrollbar-color: #3a4d2f #f5f3e8;">
+
+
                     <div>
                         <div class="mb-2 text-center">
                             <h3 class="text-lg font-bold text-[#1a2614] mb-1 pb-0.5 border-b-2 border-[#3a4d2f]"
@@ -1807,7 +2016,7 @@
                             </div>
                         </div>
 
-                        <!-- Sopas -->
+
                         <div class="mt-4 mb-2 text-center">
                             <h3 class="text-lg font-bold text-[#1a2614] mb-1 pb-1 border-b-2 border-[#3a4d2f]"
                                 style="font-family: Georgia, serif;">Sopas</h3>
@@ -1843,7 +2052,7 @@
                         </div>
                     </div>
 
-                    <!-- Column 2: Bebidas y Postres -->
+
                     <div>
                         <div class="mb-2 text-center">
                             <h3 class="text-lg font-bold text-[#1a2614] mb-1 pb-1 border-b-2 border-[#3a4d2f]"
@@ -1893,7 +2102,7 @@
                             </div>
                         </div>
 
-                        <!-- Postres -->
+
                         <div class="mt-4 mb-2 text-center">
                             <h3 class="text-lg font-bold text-[#1a2614] mb-1 pb-1 border-b-2 border-[#3a4d2f]"
                                 style="font-family: Georgia, serif;">Postres</h3>
@@ -1924,7 +2133,7 @@
                             </div>
                         </div>
 
-                        <!-- Especialidades -->
+
                         <div class="mt-4 mb-2 text-center">
                             <h3 class="text-lg font-bold text-[#1a2614] mb-1 pb-1 border-b-2 border-[#3a4d2f]"
                                 style="font-family: Georgia, serif;">Especialidades</h3>
@@ -1948,7 +2157,7 @@
                         </div>
                     </div>
 
-                    <!-- Column 3: Decorative Info -->
+
                     <div class="flex flex-col items-center justify-center">
                         <div class="bg-[#e8f0e0] rounded-lg p-6 border-2 border-[#3a4d2f] text-center shadow-md">
                             <span class="text-5xl mb-3 block">🍽️</span>
@@ -1986,7 +2195,7 @@
                     </div>
                 </div>
 
-                <!-- Footer -->
+
                 <div class="mt-3 text-center border-t-2 border-[#3a4d2f] pt-2">
                     <p class="text-[#1a2614] text-[10px] italic">✦ Gracias por preferirnos ✦</p>
                     <p class="text-[#2d3a26] text-[9px] mt-0.5">Los precios están sujetos a cambios sin previo aviso</p>
@@ -1995,11 +2204,11 @@
         </div>
     </div>
 
-    
+
     <div id="eventModal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/80 backdrop-blur-sm p-4">
         <div
             class="relative bg-white dark:bg-[#1a3322] rounded-3xl max-w-2xl w-full max-h-[90vh] overflow-y-auto shadow-2xl">
-            
+
             <div
                 class="sticky top-0 bg-gradient-to-r from-primary to-primary/80 px-8 py-6 flex items-center justify-between border-b border-white/10 z-10 rounded-t-3xl">
                 <div class="flex items-center gap-3">
@@ -2015,11 +2224,11 @@
                 </button>
             </div>
 
-            
+
             <div class="px-8 py-6">
                 <form id="eventForm" onsubmit="handleEventSubmit(event)" class="space-y-6">
 
-                    <!-- Nombre Completo -->
+
                     <div>
                         <label for="nombre" class="block text-sm font-semibold text-[#0d1b11] dark:text-white mb-2">
                             <span class="flex items-center gap-2">
@@ -2032,7 +2241,7 @@
                             placeholder="Ej: Juan Pérez">
                     </div>
 
-                    <!-- Teléfono -->
+
                     <div>
                         <label for="telefono" class="block text-sm font-semibold text-[#0d1b11] dark:text-white mb-2">
                             <span class="flex items-center gap-2">
@@ -2046,7 +2255,7 @@
                             placeholder="Ej: 987654321">
                     </div>
 
-                    <!-- Fecha Sugerida -->
+
                     <div>
                         <label for="fecha" class="block text-sm font-semibold text-[#0d1b11] dark:text-white mb-2">
                             <span class="flex items-center gap-2">
@@ -2058,7 +2267,7 @@
                             class="w-full px-4 py-3 rounded-xl border-2 border-gray-200 dark:border-gray-700 bg-white dark:bg-[#14291a] text-[#0d1b11] dark:text-white focus:border-primary focus:outline-none transition-colors">
                     </div>
 
-                    <!-- Tiempo de Estadía -->
+
                     <div>
                         <label for="horario" class="block text-sm font-semibold text-[#0d1b11] dark:text-white mb-2">
                             <span class="flex items-center gap-2">
@@ -2078,7 +2287,7 @@
                         </select>
                     </div>
 
-                    <!-- Tipo de Habitación -->
+
                     <div>
                         <label for="tipoEvento" class="block text-sm font-semibold text-[#0d1b11] dark:text-white mb-2">
                             <span class="flex items-center gap-2">
@@ -2096,7 +2305,7 @@
                         </select>
                     </div>
 
-                    <!-- Mensaje Adicional -->
+
                     <div>
                         <label for="mensaje" class="block text-sm font-semibold text-[#0d1b11] dark:text-white mb-2">
                             <span class="flex items-center gap-2">
@@ -2109,7 +2318,7 @@
                             placeholder="Cuéntanos sobre tus preferencias o necesidades especiales..."></textarea>
                     </div>
 
-                    <!-- Botones -->
+
                     <div class="flex gap-4 pt-4">
                         <button type="button" onclick="closeEventModal()"
                             class="flex-1 px-6 py-3 rounded-xl border-2 border-gray-300 dark:border-gray-600 text-[#0d1b11] dark:text-white font-semibold hover:bg-gray-50 dark:hover:bg-[#14291a] transition-colors">
@@ -2126,12 +2335,12 @@
         </div>
     </div>
 
-    
+
     <div id="eventsModal"
         class="fixed inset-0 z-50 hidden items-center justify-center bg-black/80 backdrop-blur-sm p-4">
         <div
             class="relative bg-white dark:bg-[#1a3322] rounded-3xl max-w-2xl w-full max-h-[90vh] overflow-y-auto shadow-2xl">
-           
+
             <div
                 class="sticky top-0 bg-gradient-to-r from-primary to-primary/80 px-8 py-6 flex items-center justify-between border-b border-white/10 z-10 rounded-t-3xl">
                 <div class="flex items-center gap-3">
@@ -2147,11 +2356,11 @@
                 </button>
             </div>
 
-            
+
             <div class="px-8 py-6">
                 <form id="eventsForm" onsubmit="handleEventsSubmit(event)" class="space-y-6">
 
-                    
+
                     <div>
                         <label for="nombreEvento"
                             class="block text-sm font-semibold text-[#0d1b11] dark:text-white mb-2">
@@ -2165,7 +2374,7 @@
                             placeholder="Ej: Juan Pérez">
                     </div>
 
-                    
+
                     <div>
                         <label for="telefonoEvento"
                             class="block text-sm font-semibold text-[#0d1b11] dark:text-white mb-2">
@@ -2180,7 +2389,7 @@
                             placeholder="Ej: 987654321">
                     </div>
 
-                    
+
                     <div>
                         <label for="fechaEvento"
                             class="block text-sm font-semibold text-[#0d1b11] dark:text-white mb-2">
@@ -2193,7 +2402,7 @@
                             class="w-full px-4 py-3 rounded-xl border-2 border-gray-200 dark:border-gray-700 bg-white dark:bg-[#14291a] text-[#0d1b11] dark:text-white focus:border-primary focus:outline-none transition-colors">
                     </div>
 
-                    
+
                     <div>
                         <label for="horarioEvento"
                             class="block text-sm font-semibold text-[#0d1b11] dark:text-white mb-2">
@@ -2212,7 +2421,7 @@
                         </select>
                     </div>
 
-                    
+
                     <div>
                         <label for="tipoEventoCelebracion"
                             class="block text-sm font-semibold text-[#0d1b11] dark:text-white mb-2">
@@ -2233,7 +2442,7 @@
                         </select>
                     </div>
 
-                   
+
                     <div>
                         <label for="invitadosEvento"
                             class="block text-sm font-semibold text-[#0d1b11] dark:text-white mb-2">
@@ -2247,7 +2456,7 @@
                             placeholder="Ej: 50">
                     </div>
 
-                    
+
                     <div>
                         <label for="mensajeEvento"
                             class="block text-sm font-semibold text-[#0d1b11] dark:text-white mb-2">
@@ -2261,7 +2470,7 @@
                             placeholder="Cuéntanos más sobre tu evento..."></textarea>
                     </div>
 
-                   
+
                     <div class="flex gap-4 pt-4">
                         <button type="button" onclick="closeEventsModal()"
                             class="flex-1 px-6 py-3 rounded-xl border-2 border-gray-300 dark:border-gray-600 text-[#0d1b11] dark:text-white font-semibold hover:bg-gray-50 dark:hover:bg-[#14291a] transition-colors">
@@ -2281,10 +2490,10 @@
     <footer class="bg-gradient-to-b from-[#0d1b11] to-[#081410] text-white pt-16 pb-8 border-t border-primary/20">
         <div class="max-w-[1280px] mx-auto px-4">
 
-            
+
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
 
-                
+
                 <div class="lg:col-span-1">
                     <div class="logo-container mb-6">
                         <img src="logo.png" alt="Mi Descanso" class="footer-logo">
@@ -2294,7 +2503,7 @@
                         Restaurante campestre donde la naturaleza y el buen sabor se encuentran. Disfruta de momentos
                         únicos con tu familia.
                     </p>
-                    
+
                     <div class="flex gap-3">
                         <a href="#"
                             class="w-11 h-11 rounded-full bg-white/10 flex items-center justify-center hover:bg-primary hover:text-[#0d1b11] transition-all hover:scale-110 hover:shadow-lg hover:shadow-primary/50">
@@ -2323,7 +2532,7 @@
                     </div>
                 </div>
 
-               
+
                 <div>
                     <h3 class="text-lg font-bold mb-6 text-primary">Enlaces Rápidos</h3>
                     <ul class="space-y-3">
@@ -2362,7 +2571,7 @@
                     </ul>
                 </div>
 
-                
+
                 <div>
                     <h3 class="text-lg font-bold mb-6 text-primary">Horarios</h3>
                     <ul class="space-y-3 text-sm">
@@ -2383,7 +2592,7 @@
                     </ul>
                 </div>
 
-                
+
                 <div>
                     <h3 class="text-lg font-bold mb-6 text-primary">Contacto</h3>
                     <ul class="space-y-4 text-sm">
@@ -2422,7 +2631,7 @@
                 </div>
             </div>
 
-            
+
             <div class="pt-8 border-t border-white/10">
                 <p class="text-sm text-gray-400 text-center">
                     © 2025 <span class="text-primary font-semibold">Mi Descanso</span> - Restaurante Campestre. Todos
@@ -2431,9 +2640,9 @@
             </div>
         </div>
     </footer>
-    
+
     <div class="fixed bottom-6 right-6 z-50 flex flex-col gap-3">
-        <!-- WhatsApp -->
+
         <a href="https://wa.me/51987654321?text=Hola,%20me%20gustaría%20obtener%20más%20información%20sobre%20Mi%20Descanso"
             target="_blank"
             class="flex items-center justify-center w-16 h-16 bg-[#25D366] text-white rounded-full shadow-[0_4px_20px_rgba(37,211,102,0.5)] hover:scale-110 transition-all cursor-pointer group">
@@ -2444,7 +2653,7 @@
             </svg>
         </a>
 
-        <!-- Instagram -->
+
         <a href="https://www.instagram.com/midecanso.huaycan" target="_blank"
             class="flex items-center justify-center w-16 h-16 bg-gradient-to-br from-[#833AB4] via-[#FD1D1D] to-[#F77737] text-white rounded-full shadow-[0_4px_20px_rgba(253,29,29,0.5)] hover:scale-110 transition-all cursor-pointer group">
             <svg class="w-9 h-9 fill-current" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -2454,7 +2663,7 @@
             </svg>
         </a>
 
-        <!-- TikTok -->
+
         <a href="https://www.tiktok.com/@midescanso.huaycan" target="_blank"
             class="flex items-center justify-center w-16 h-16 bg-black text-white rounded-full shadow-[0_4px_20px_rgba(0,0,0,0.5)] hover:scale-110 transition-all cursor-pointer group">
             <svg class="w-9 h-9 fill-current" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -2464,7 +2673,7 @@
             </svg>
         </a>
 
-        <!-- Facebook -->
+
         <a href="https://www.facebook.com/midescanso.huaycan" target="_blank"
             class="flex items-center justify-center w-16 h-16 bg-[#1877F2] text-white rounded-full shadow-[0_4px_20px_rgba(24,119,242,0.5)] hover:scale-110 transition-all cursor-pointer group">
             <svg class="w-9 h-9 fill-current" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -2476,7 +2685,7 @@
     </div>
 
     <script>
-        
+
         let currentSlide = 0;
         const slides = document.querySelectorAll('.carousel-slide');
         const dots = document.querySelectorAll('.carousel-dot');
@@ -2484,11 +2693,10 @@
         let autoPlayInterval;
 
         function showSlide(index) {
-            
+
             slides.forEach(slide => slide.classList.remove('active'));
             dots.forEach(dot => dot.classList.remove('active'));
 
-            
             if (index >= totalSlides) {
                 currentSlide = 0;
             } else if (index < 0) {
@@ -2497,7 +2705,7 @@
                 currentSlide = index;
             }
 
-            
+
             slides[currentSlide].classList.add('active');
             dots[currentSlide].classList.add('active');
         }
@@ -2523,10 +2731,10 @@
             }, 3000);
         }
 
-        
+
         startAutoPlay();
 
-        
+
         const carouselContainer = document.querySelector('.carousel-container');
         carouselContainer.addEventListener('mouseenter', () => {
             clearInterval(autoPlayInterval);
@@ -2536,7 +2744,44 @@
             startAutoPlay();
         });
 
-        
+
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileMenuOverlay = document.getElementById('mobile-menu-overlay');
+        const mobileMenuClose = document.getElementById('mobile-menu-close');
+        const mobileMenuLinks = document.querySelectorAll('.mobile-menu-link');
+
+        function openMobileMenu() {
+            mobileMenu.classList.add('active');
+            mobileMenuOverlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeMobileMenu() {
+            mobileMenu.classList.remove('active');
+            mobileMenuOverlay.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        mobileMenuBtn.addEventListener('click', openMobileMenu);
+        mobileMenuClose.addEventListener('click', closeMobileMenu);
+        mobileMenuOverlay.addEventListener('click', closeMobileMenu);
+
+
+        mobileMenuLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                closeMobileMenu();
+            });
+        });
+
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && mobileMenu.classList.contains('active')) {
+                closeMobileMenu();
+            }
+        });
+
+
         let selectedItems = [];
 
         function toggleMenuItem(button) {
@@ -2544,18 +2789,18 @@
             const itemName = menuItem.dataset.name;
             const itemPrice = menuItem.dataset.price;
 
-           
+
             const index = selectedItems.findIndex(item => item.name === itemName);
 
             if (index > -1) {
-               
+
                 selectedItems.splice(index, 1);
                 menuItem.classList.remove('ring-2', 'ring-primary', 'ring-offset-2');
                 button.classList.remove('bg-primary', 'text-[#0d1b11]');
                 button.classList.add('text-primary', 'border-primary');
                 button.textContent = 'Pedir';
             } else {
-                
+
                 selectedItems.push({ name: itemName, price: itemPrice });
                 menuItem.classList.add('ring-2', 'ring-primary', 'ring-offset-2');
                 button.classList.add('bg-primary', 'text-[#0d1b11]');
@@ -2563,7 +2808,7 @@
                 button.textContent = '✓ Seleccionado';
             }
 
-            
+
             updateWhatsAppButton();
         }
 
@@ -2583,7 +2828,7 @@
                 return;
             }
 
-            
+
             let message = `🍽️ *PEDIDO - MI DESCANSO*%0A%0A`;
             message += `*Platos seleccionados:*%0A`;
 
@@ -2596,15 +2841,15 @@
             message += `%0A💰 *Total:* S/ ${total.toFixed(2)}%0A%0A`;
             message += `¡Gracias por tu preferencia! 🌿`;
 
-            
-            const whatsappNumber = '51999999999'; 
+
+            const whatsappNumber = '51999999999';
             const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${message}`;
 
-            
+
             window.open(whatsappUrl, '_blank');
         }
 
-        
+
         function openMenuModal() {
             const modal = document.getElementById('menuModal');
             modal.classList.remove('hidden');
@@ -2619,14 +2864,14 @@
             document.body.style.overflow = 'auto';
         }
 
-        
+
         document.getElementById('menuModal').addEventListener('click', function (e) {
             if (e.target === this) {
                 closeMenuModal();
             }
         });
 
-        
+
         document.addEventListener('keydown', function (e) {
             if (e.key === 'Escape') {
                 closeMenuModal();
@@ -2634,14 +2879,14 @@
             }
         });
 
-        
+
         function openEventModal() {
             const modal = document.getElementById('eventModal');
             modal.classList.remove('hidden');
             modal.classList.add('flex');
             document.body.style.overflow = 'hidden';
 
-           
+
             const tomorrow = new Date();
             tomorrow.setDate(tomorrow.getDate() + 1);
             const minDate = tomorrow.toISOString().split('T')[0];
@@ -2655,14 +2900,14 @@
             document.body.style.overflow = 'auto';
         }
 
-        
+
         document.getElementById('eventModal').addEventListener('click', function (e) {
             if (e.target === this) {
                 closeEventModal();
             }
         });
 
-        
+
         function handleEventSubmit(e) {
             e.preventDefault();
 
@@ -2672,7 +2917,7 @@
                 data[key] = value;
             });
 
-            
+
             let message = `🎉 *SOLICITUD DE EVENTO*%0A%0A`;
             message += `👤 *Nombre:* ${data.nombre}%0A`;
             message += `📱 *Teléfono:* ${data.telefono}%0A`;
@@ -2688,29 +2933,28 @@
                 message += `%0A💬 *Mensaje:*%0A${data.mensaje}`;
             }
 
-            
-            const whatsappNumber = '51999999999'; 
+            const whatsappNumber = '51999999999';
             const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${message}`;
 
-           
+
             window.open(whatsappUrl, '_blank');
 
-            
+
             closeEventModal();
             e.target.reset();
 
-            
+
             alert('¡Solicitud enviada! Te redirigimos a WhatsApp para confirmar.');
         }
 
-        
+
         function openEventsModal() {
             const modal = document.getElementById('eventsModal');
             modal.classList.remove('hidden');
             modal.classList.add('flex');
             document.body.style.overflow = 'hidden';
 
-            
+
             const tomorrow = new Date();
             tomorrow.setDate(tomorrow.getDate() + 1);
             const minDate = tomorrow.toISOString().split('T')[0];
@@ -2724,14 +2968,14 @@
             document.body.style.overflow = 'auto';
         }
 
-        
+
         document.getElementById('eventsModal').addEventListener('click', function (e) {
             if (e.target === this) {
                 closeEventsModal();
             }
         });
 
-        
+
         function handleEventsSubmit(e) {
             e.preventDefault();
 
@@ -2741,7 +2985,7 @@
                 data[key] = value;
             });
 
-           
+
             let message = `🎉 *SOLICITUD DE EVENTO*%0A%0A`;
             message += `👤 *Nombre:* ${data.nombreEvento}%0A`;
             message += `📱 *Teléfono:* ${data.telefonoEvento}%0A`;
@@ -2754,22 +2998,21 @@
                 message += `%0A💬 *Mensaje:*%0A${data.mensajeEvento}`;
             }
 
-            
-            const whatsappNumber = '51999999999'; 
+            const whatsappNumber = '51999999999';
             const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${message}`;
 
-            
+
             window.open(whatsappUrl, '_blank');
 
-            
+
             closeEventsModal();
             e.target.reset();
 
-            
+
             alert('¡Solicitud enviada! Te redirigimos a WhatsApp para confirmar.');
         }
 
-        
+
         document.addEventListener('keydown', function (e) {
             if (e.key === 'Escape') {
                 closeMenuModal();
@@ -2780,7 +3023,6 @@
     </script>
 
 </body>
-
 
 </html>
 
