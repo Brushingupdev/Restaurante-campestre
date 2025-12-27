@@ -807,10 +807,10 @@
         class="sticky top-0 z-50 w-full bg-background-light/95 dark:bg-background-dark/95 backdrop-blur-sm border-b border-[#e7f3ea] dark:border-white/10">
         <div class="max-w-[1280px] mx-auto px-4 sm:px-10 py-3">
             <div class="flex items-center justify-between">
-                <div class="logo-container">
+                <a href="#inicio" class="logo-container" style="cursor: pointer; text-decoration: none;">
                     <img src="logo.png" alt="Mi Descanso Logo" class="logo-img">
                     <span class="logo-text">Mi Descanso</span>
-                </div>
+                </a>
                 <div class="hidden md:flex items-center gap-8">
                     <a class="text-sm font-medium hover:text-primary transition-colors" href="#menu">Restaurante</a>
                     <a class="text-sm font-medium hover:text-primary transition-colors" href="#hospedaje">Hospedaje</a>
@@ -2743,6 +2743,41 @@
         carouselContainer.addEventListener('mouseleave', () => {
             startAutoPlay();
         });
+
+
+        let touchStartX = 0;
+        let touchEndX = 0;
+        let touchStartY = 0;
+        let touchEndY = 0;
+
+        carouselContainer.addEventListener('touchstart', (e) => {
+            touchStartX = e.changedTouches[0].screenX;
+            touchStartY = e.changedTouches[0].screenY;
+        }, { passive: true });
+
+        carouselContainer.addEventListener('touchend', (e) => {
+            touchEndX = e.changedTouches[0].screenX;
+            touchEndY = e.changedTouches[0].screenY;
+            handleSwipe();
+        }, { passive: true });
+
+        function handleSwipe() {
+            const swipeThreshold = 50;
+            const horizontalDiff = touchEndX - touchStartX;
+            const verticalDiff = Math.abs(touchEndY - touchStartY);
+
+        
+            if (Math.abs(horizontalDiff) > swipeThreshold && Math.abs(horizontalDiff) > verticalDiff) {
+                if (horizontalDiff > 0) {
+
+                    moveCarousel(-1);
+                } else {
+
+                    moveCarousel(1);
+                }
+            }
+        }
+
 
 
         const mobileMenuBtn = document.getElementById('mobile-menu-btn');
